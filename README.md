@@ -42,7 +42,7 @@ Use full-size mode for browsing playlists and tracks. Use compact mode when you 
 
 ![Full-size and Compact](./assets/readme-player-sizes.png)
 
-![Music Pro compact auto-hide](./assets/readme-auto-hide.affinity-editable.svg)
+![Music Pro compact auto-hide](./assets/readme-autohide.png)
 
 ## Installation
 
