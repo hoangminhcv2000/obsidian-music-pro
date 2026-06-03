@@ -1,0 +1,61 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - '*.*.*'
+
+permissions:
+  contents: write
+  id-token: write
+  attestations: write
+
+jobs:
+  release:
+    name: Build, attest, and publish release assets
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Prepare release assets
+        run: npm run release:prepare
+
+      - name: Verify release tag
+        run: |
+          VERSION="$(node -p "require('./manifest.json').version")"
+          test "$GITHUB_REF_NAME" = "$VERSION"
+
+      - name: Attest release assets
+        uses: actions/attest-build-provenance@v2
+        with:
+          subject-path: |
+            release/${{ github.ref_name }}/main.js
+            release/${{ github.ref_name }}/manifest.json
+            release/${{ github.ref_name }}/styles.css
+
+      - name: Publish GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VERSION="$(node -p "require('./manifest.json').version")"
+          ASSETS=(
+            "release/$VERSION/main.js"
+            "release/$VERSION/manifest.json"
+            "release/$VERSION/styles.css"
+          )
+          if gh release view "$VERSION" >/dev/null 2>&1; then
+            gh release upload "$VERSION" "${ASSETS[@]}" --clobber
+          else
+            gh release create "$VERSION" "${ASSETS[@]}" --title "$VERSION" --notes "Music Pro $VERSION"
+          fi

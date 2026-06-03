@@ -331,7 +331,7 @@ check("edge buttons align with the player rails", async () => {
   const edgeCss = css.slice(marker);
   assert(main.includes('const ribbonIcon = this.addRibbonIcon("music-2", "Music Pro", () => this.toggleMode());') && main.includes('ribbonIcon.addClass("music-pro-ribbon-action")'), "Music Pro ribbon icon should have a scoped class for edge inset");
   assert(edgeCss.includes(".side-dock-ribbon-action.music-pro-ribbon-action") && edgeCss.includes("translateX(4px)"), "ribbon button should be nudged inward from the hard left edge");
-  assert(edgeCss.includes("padding-right: 18px") && edgeCss.includes("column-gap: 16px"), "now-playing controls should breathe away from the card edge");
+  assert(edgeCss.includes("padding-right: 18px") && edgeCss.includes("gap: 0 16px"), "now-playing controls should breathe away from the card edge");
   assert(edgeCss.includes(".music-pro-now-card-option-b .music-pro-now-bottomline") && edgeCss.includes("padding-right: 4px"), "player buttons and sliders should share a subtle right rail");
   assert(edgeCss.includes("padding-left: 24px") && edgeCss.includes("padding-right: 24px"), "compact sidebar width should keep content away from view borders");
 });
@@ -838,7 +838,7 @@ check("playlist rail actions stay clear of search", async () => {
   assert(marker > css.lastIndexOf("UI audit v23"), "playlist/search collision fix should override previous rail rules");
   const v24 = css.slice(marker);
   assert(sidebar.includes('text: "Playlists"') && sidebar.includes('"Add SoundCloud link or Personal Playlist"'), "rail should use plural Playlists naming in visible/header copy");
-  assert(v24.includes("grid-template-columns: minmax(236px, 0.40fr) minmax(0, 1fr)") && v24.includes("column-gap: 22px"), "desktop rail should reserve room and spacing before the search field");
+  assert(v24.includes("grid-template-columns: minmax(236px, 0.40fr) minmax(0, 1fr)") && v24.includes("gap: 0 22px"), "desktop rail should reserve room and spacing before the search field");
   assert(v24.includes(".music-pro-playlist-content") && v24.includes(".music-pro-library-panel .music-pro-search-wrap") && v24.includes("min-width: 0"), "search column should shrink safely without being overlapped");
   assert(v24.includes("@container (max-width: 640px)") && v24.includes("grid-template-columns: minmax(176px, 0.45fr) minmax(0, 1fr)") && v24.includes("row-gap: 8px"), "narrow widths should stack rail buttons under the title instead of spilling into search");
   assert(v24.includes("@container (max-width: 430px)") && v24.includes("grid-template-columns: minmax(0, 1fr)") && v24.includes("flex-direction: column"), "very narrow sidebar should stack search below the vertical playlist rail");
@@ -888,7 +888,7 @@ check("settings are open, streamlined, and preset colors are visible", async () 
   const heroMarker = css.lastIndexOf("UI audit v85");
   assert(heroMarker > css.lastIndexOf("UI audit v84"), "settings hero alignment should come after default-like settings gutter fixes");
   const heroCss = css.slice(heroMarker);
-  assert(heroCss.includes(".music-pro-settings.music-pro-fixed-appearance .music-pro-settings-hero h2,\n.music-pro-settings.music-pro-fixed-appearance .music-pro-settings-hero p") && heroCss.includes("padding-inline: 0 !important") && heroCss.includes("text-indent: 0 !important"), "settings hero title and slogan should share one left edge across themes");
+  assert(heroCss.includes(".music-pro-settings.music-pro-fixed-appearance .music-pro-settings-hero h2,\n.music-pro-settings.music-pro-fixed-appearance .music-pro-settings-hero p") && heroCss.includes("padding-inline: 0 !important") && !heroCss.includes("text-indent"), "settings hero title and slogan should share one left edge across themes");
 });
 
 check("Show More rows stay count-free", async () => {
@@ -1083,7 +1083,7 @@ check("full player delays meter stacking until truly tiny", async () => {
   const marker = css.lastIndexOf("UI audit v50");
   assert(marker > css.lastIndexOf("UI audit v49"), "meter stacking threshold should override the latest compact glyph pass");
   const v48 = css.slice(marker);
-  assert(v48.includes("grid-template-columns: minmax(0, 1fr) minmax(112px, 0.42fr)") && v48.includes("column-gap: 9px"), "screenshot-width player should keep timeline and volume side-by-side instead of stacking too early");
+  assert(v48.includes("grid-template-columns: minmax(0, 1fr) minmax(112px, 0.42fr)") && v48.includes("gap: 0 9px"), "screenshot-width player should keep timeline and volume side-by-side instead of stacking too early");
   assert(v48.includes(".music-pro-now-card-option-b .music-pro-progress-compact") && v48.includes("grid-template-columns: 38px minmax(50px, 1fr) 38px"), "horizontal timeline row should stay compact enough for narrow sidebars");
   assert(v48.includes(".music-pro-now-card-option-b .music-pro-now-volume") && v48.includes("grid-template-columns: 22px minmax(44px, 1fr) 44px"), "horizontal volume row should use compact icon/slider/percent columns");
   assert(v48.includes("--music-pro-meter-opacity") && v48.includes("opacity: var(--music-pro-meter-opacity, 0.84)") && v48.includes(".music-pro-now-card-option-b .music-pro-now-volume-icon"), "time labels, volume percent, and volume symbol should keep matching muted opacity");
@@ -1123,7 +1123,7 @@ check("Tracks loading and loaded states share one measured frame", async () => {
   assert(sidebar.includes("music-pro-playlist-loading-label"), "loading copy should have a dedicated class so it can be removed from visual layout without losing context");
   assert(v52.includes(`.music-pro-playlist-tracks,
 .music-pro-playlist-tracks.is-loading`) && v52.includes("--music-pro-tracks-panel-height: clamp(356px, 38vh, 390px)") && v52.includes("block-size: var(--music-pro-tracks-panel-height)") && v52.includes("max-block-size: var(--music-pro-tracks-panel-height)"), "loading and hydrated Tracks cards should use the exact same measured frame");
-  assert(v52.includes(".music-pro-playlist-tracks.is-loading .music-pro-playlist-loading-label") && v52.includes("clip-path: inset(50%)") && v52.includes("position: absolute"), "loading text should not consume extra vertical space before the skeleton list");
+  assert(v52.includes(".music-pro-playlist-tracks.is-loading .music-pro-playlist-loading-label") && !v52.includes("clip-path") && v52.includes("position: absolute"), "loading text should not consume extra vertical space before the skeleton list");
   assert(v52.includes(`.music-pro-playlist-tracks .music-pro-playlist-list,
 .music-pro-playlist-tracks .music-pro-playlist-skeleton-list`) && v52.includes("flex: 1 1 0") && v52.includes("margin-top: 0"), "real and skeleton track lists should occupy the same slot inside the fixed card");
   assert(v52.includes(".music-pro-playlist-tracks .music-pro-playlist-skeleton-track") && v52.includes("min-height: 56px"), "skeleton rows should match hydrated track row height");
@@ -1625,6 +1625,18 @@ check("short description is consistent across release-facing sources", async () 
   assert(packageJson.description === expected, "package.json description should use the approved short description");
   assert(readme.includes(`\n${expected}\n`), "README intro should use the approved short description");
   assert((await readFile(new URL("../src/ui/SettingsTab.ts", import.meta.url), "utf8")).includes(expected), "Settings hero should use the approved short description");
+});
+
+check("Obsidian scorecard risks stay fixed", async () => {
+  const manifest = JSON.parse(await readFile(new URL("../manifest.json", import.meta.url), "utf8"));
+  const player = await readFile(new URL("../src/player/SoundCloudPlayer.ts", import.meta.url), "utf8");
+  const main = await readFile(new URL("../src/main.ts", import.meta.url), "utf8");
+  const settings = await readFile(new URL("../src/ui/SettingsTab.ts", import.meta.url), "utf8");
+  const sourceText = [player, main, settings].join("\n");
+
+  assert(!/\bObsidian\b/i.test(manifest.description), "manifest.description should not repeat the word Obsidian for community scorecard");
+  assert(!/createElement\((["'])script\1\)/.test(sourceText), "plugin source should not dynamically inject external script elements");
+  assert(!/w\.soundcloud\.com\/player\/api\.js/.test(sourceText), "SoundCloud widget bridge should not load the external API script at runtime");
 });
 
 check("four-phase SoundCloud mining hardening is wired", async () => {

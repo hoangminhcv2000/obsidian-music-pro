@@ -354,9 +354,10 @@ export class MusicProSidebarView extends ItemView {
     const item = state.currentItem;
     if (!item) return;
     const isPlaylist = item.type === "playlist";
+    const showsSingleTrackCallout = !isPlaylist || (state.playlistReady && state.soundList.length === 1);
 
     const section = container.createDiv({
-      cls: `music-pro-playlist-tracks ${isPlaylist && !state.playlistReady ? "is-loading" : ""} ${!isPlaylist ? "is-single-track" : ""}`
+      cls: `music-pro-playlist-tracks ${isPlaylist && !state.playlistReady ? "is-loading" : ""} ${showsSingleTrackCallout ? "is-single-track" : ""}`
     });
     const header = section.createDiv({ cls: "music-pro-playlist-header" });
     header.createEl("div", { cls: "music-pro-section-title", text: "Tracks" });
