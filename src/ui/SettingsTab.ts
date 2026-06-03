@@ -30,7 +30,7 @@ export class MusicProSettingsTab extends PluginSettingTab {
 
     const hero = containerEl.createDiv({ cls: "music-pro-settings-hero" });
     hero.createEl("h2", { text: "Music Pro" });
-    hero.createEl("p", { text: "A plug-and-play music app for deep work inside Obsidian." });
+    hero.createEl("p", { text: "A plug-and-play music app for deep work." });
 
     const appearance = this.createSettingsSection(
       containerEl,

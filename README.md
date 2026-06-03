@@ -1,6 +1,6 @@
 # Music Pro
 
-A plug-and-play music app for deep work inside Obsidian.
+A plug-and-play music app for deep work.
 
 ![Music Pro preview](./assets/readme-hero.png)
 

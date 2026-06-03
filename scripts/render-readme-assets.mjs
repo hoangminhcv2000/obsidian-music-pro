@@ -459,7 +459,7 @@ function pageHero() {
   let body = "";
   body += halo(1030, 145, 290, C.accent2, .16);
   body += headline(88, 170, "Music Pro", 68, C.text);
-  body += multi(92, 226, ["A plug-and-play music app", "for deep work inside", "Obsidian."], 24, 620, C.muted, 1.26);
+  body += multi(92, 226, ["A plug-and-play music app", "for deep work."], 24, 620, C.muted, 1.26);
   body += simpleAppChrome(468, 98, 638, 1004, heroWindowBody, { r: 46 });
   return base(W, H, body, { rx: 88 });
 }

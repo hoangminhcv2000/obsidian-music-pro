@@ -881,7 +881,7 @@ check("settings are open, streamlined, and preset colors are visible", async () 
   assert(settingsTab.includes("createSettingsSection") && settingsTab.includes("music-pro-settings-section") && !settingsTab.includes('createEl("details"') && !settingsTab.includes('createEl("summary"'), "settings should use always-open sections instead of collapsed details accordions");
   assert(!settingsTab.includes("Add Your SoundCloud Link") && !settingsTab.includes("Default Volume") && !settingsTab.includes("Default View") && !settingsTab.includes("Remote Catalog URL") && !settingsTab.includes("Use Remote Catalog"), "settings should omit controls already handled in the main UI or advanced developer-only fields");
   assert(settingsTab.includes("music-pro-accent-swatch-color") && !settingsTab.includes("music-pro-accent-swatch-label"), "accent presets should render color-only chips without visible color names");
-  assert(settingsTab.includes("A plug-and-play music app for deep work inside Obsidian.") && settingsTab.includes("Color and background.") && settingsTab.includes("Choose what shows and loads.") && !settingsTab.includes("Catalog Maintenance") && !settingsTab.includes("Refresh or clear cached catalog data."), "settings should keep catalog maintenance out of the normal user UI");
+  assert(settingsTab.includes("A plug-and-play music app for deep work.") && settingsTab.includes("Color and background.") && settingsTab.includes("Choose what shows and loads.") && !settingsTab.includes("Catalog Maintenance") && !settingsTab.includes("Refresh or clear cached catalog data."), "settings should keep catalog maintenance out of the normal user UI");
   assert(!settingsTab.includes("Keep only behavior that is not already easier to adjust from the player UI.") && !settingsTab.includes("Control what Music Pro indexes, renders, searches, and preserves in this vault.") && !settingsTab.includes("Lightweight maintenance only; add music, loop, volume, and view mode are controlled directly in the Music Pro UI."), "settings should not reintroduce verbose helper copy");
   assert(v31.includes(".music-pro-accent-swatch-color") && v31.includes("background-color: var(--music-pro-swatch)") && v31.includes(".music-pro-accent-swatch-label"), "preset color swatches should show the actual selected color rather than dark generic buttons");
   assert(v31.includes(".music-pro-category-toggle-grid") && v31.includes("repeat(auto-fit, minmax(190px, 1fr))"), "playlist performance toggles should be visible in an open responsive grid");
@@ -1616,7 +1616,7 @@ check("Obsidian command palette stays minimal and user-facing", async () => {
 });
 
 check("short description is consistent across release-facing sources", async () => {
-  const expected = "A plug-and-play music app for deep work inside Obsidian.";
+  const expected = "A plug-and-play music app for deep work.";
   const manifest = JSON.parse(await readFile(new URL("../manifest.json", import.meta.url), "utf8"));
   const packageJson = JSON.parse(await readFile(new URL("../package.json", import.meta.url), "utf8"));
   const readme = await readFile(new URL("../README.md", import.meta.url), "utf8");
