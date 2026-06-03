@@ -1802,18 +1802,17 @@ check("README feature images are visual-first", async () => {
   const pageFullSize = render.slice(render.indexOf("function pageFullSize"), render.indexOf("function compactPanel"));
   const pageCompact = render.slice(render.indexOf("function pageCompact"), render.indexOf("function pageAutoHide"));
   const pageAutoHide = render.slice(render.indexOf("function pageAutoHide"), render.indexOf("const pages"));
-  assert([
+  const readmeFeatureAssets = [
     "readme-hero.png",
-    "readme-curated-defaults.png",
-    "readme-curated-movies-games.png",
-    "readme-personal-add.png",
-    "readme-personal-assign.png",
-    "readme-personal-folder-mh.png",
+    "readme-curated-playlists.png",
+    "readme-personal-playlists.png",
     "readme-auto-pause.png",
-    "readme-full-size.png",
-    "readme-compact.png",
+    "readme-player-sizes.png",
     "readme-auto-hide.png"
-  ].every((asset) => readme.includes(asset)), "README should use the generated hero and visual-first split feature assets");
+  ];
+  assert(readmeFeatureAssets.every((asset) => readme.includes(asset)), "README should use the composite visual-first feature assets");
+  assert(readmeFeatureAssets.every((asset) => assetFiles.includes(asset)), "README composite feature assets should exist in assets/");
+  assert(!readme.includes("readme-curated-defaults.png") && !readme.includes("readme-curated-movies-games.png") && !readme.includes("readme-personal-add.png") && !readme.includes("readme-personal-assign.png") && !readme.includes("readme-personal-folder-mh.png") && !readme.includes("readme-full-size.png") && !readme.includes("readme-compact.png"), "README should use one composite image per feature scene instead of split thumbnails");
   assert(!readme.includes("readme-quick-pick.png"), "README feature section should not show a separate Quick Pick image");
   assert(render.includes("loadItems") && render.includes("fetchArtwork") && render.includes("fetchTracks") && render.includes('fs.readFileSync(path.join(root, "catalog", "catalog.json")'), "README asset renderer should use real catalog playlists, SoundCloud artwork, and real playlist tracks");
   assert(!assetFiles.some((file) => ["readme-full-player.png", "readme-compact-player.png", "readme-quick-pick.png", "readme-customize.png"].includes(file)), "unused legacy README images should be removed so stale synthetic assets do not ship");

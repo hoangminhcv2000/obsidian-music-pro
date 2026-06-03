@@ -22,20 +22,13 @@ Music Pro gives you focused playlists, a clean player, and a compact mini mode w
 
 Browse real SoundCloud playlists organized for focus, ambience, piano, orchestra, jazz, games, and more.
 
-<p align="center">
-  <img src="./assets/readme-curated-defaults.png" alt="Music Pro curated playlist categories" width="49%" />
-  <img src="./assets/readme-curated-movies-games.png" alt="Music Pro Movies/Games playlists" width="49%" />
-</p>
+![Curated Playlists](./assets/readme-curated-playlists.png)
 
 ### Personal Playlists
 
 Save your own SoundCloud links into personal folders, then rename, reorder, or clean them up anytime.
 
-<p align="center">
-  <img src="./assets/readme-personal-add.png" alt="Add a SoundCloud link to Music Pro" width="32%" />
-  <img src="./assets/readme-personal-assign.png" alt="Save a playlist into a personal folder" width="32%" />
-  <img src="./assets/readme-personal-folder-mh.png" alt="Music Pro personal folder" width="32%" />
-</p>
+![Personal Playlists](./assets/readme-personal-playlists.png)
 
 ### Auto-pause For Other Audio
 
@@ -47,10 +40,7 @@ When another website, webview, audio, or video inside Obsidian starts playing, M
 
 Use full-size mode for browsing playlists and tracks. Use compact mode when you only need quick controls nearby.
 
-<p align="center">
-  <img src="./assets/readme-full-size.png" alt="Music Pro full-size mode" width="49%" />
-  <img src="./assets/readme-compact.png" alt="Music Pro compact mode" width="49%" />
-</p>
+![Full-size and Compact](./assets/readme-player-sizes.png)
 
 ![Music Pro compact auto-hide](./assets/readme-auto-hide.png)
 
