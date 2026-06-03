@@ -5,7 +5,6 @@ A plug-and-play music app for deep work inside Obsidian.
 ![Music Pro preview](./assets/readme-hero.png)
 
 ## Why Music Pro?
-
 - No ads.
 - No complex setup.
 - Curated playlists specifically for work, study, reading, and deep focus.
@@ -17,7 +16,6 @@ A plug-and-play music app for deep work inside Obsidian.
 		- Music consumes much less network data than music video. => Maybe wanna work outside? Not a problem!
 
 ## Features
-
 ### Curated Playlists
 
 Music comes from public SoundCloud playlists. Music Pro organizes them into focused playlists for work, study, reading, ambience, piano, orchestra, jazz, games, and more.
@@ -55,16 +53,16 @@ Use **full-size mode** when you want the complete app: player, tracks, playlists
 <p align="center">
   <img src="./assets/readme-auto-hide.png" alt="Music Pro compact auto-hide" width="100%" />
 </p>
-## Installation
 
+## Installation
 Install Music Pro from inside Obsidian:
 
 1. Open **Settings → Community plugins**.
 2. Search for **Music Pro**.
 3. Click **Install**, then **Enable**.
 4. Open Music Pro from the ribbon icon or run **Music Pro: Open**.
-## Commands
 
+## Commands
 In Obsidian's command palette, search for **Music Pro** and run:
 
 - Music Pro: Open
@@ -77,8 +75,8 @@ In Obsidian's command palette, search for **Music Pro** and run:
 - Music Pro: Volume 30%
 - Music Pro: Volume 60%
 - Music Pro: Volume 90%
-## Privacy and Network Use
 
+## Privacy and Network Use
 Music Pro has no telemetry, analytics, ads, or account requirement.
 
 It only connects to:
@@ -95,15 +93,12 @@ Saved locally in Obsidian:
 Music Pro is not affiliated with SoundCloud or Obsidian.
 
 ## Future Roadmap
-
 Music Pro is not a one-and-done project. I keep an eye on bugs, playback issues, and playlist quality. Constantly, I check the playlists, remove weak or broken picks, keep the good ones, and add fresh music.
 
 If Music Pro helps your workflow, consider supporting the work: [Support on Ko-fi](https://ko-fi.com/minhhoang2000).
 
 ## Feedback
-
 Found a bug or have an idea? [Send feedback on Ko-fi](https://ko-fi.com/minhhoang2000).
 
 ## License
-
 Music Pro is released under the [GNU General Public License v3.0 only](./LICENSE) (`GPL-3.0-only`). Copyright © 2026 Minh Hoang.
