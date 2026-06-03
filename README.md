@@ -98,7 +98,7 @@ Music Pro is not a one-and-done project. I keep an eye on bugs, playback issues,
 If Music Pro helps your workflow, consider supporting the work: [Support on Ko-fi](https://ko-fi.com/minhhoang2000).
 
 ## Feedback
-Found a bug or have an idea? [Send feedback on Ko-fi](https://ko-fi.com/minhhoang2000).
+Found a bug or have an idea? [Send feedback on Ko-fi](https://ko-fi.com/i/IS8X420QGTB).
 
 ## License
 Music Pro is released under the [GNU General Public License v3.0 only](./LICENSE) (`GPL-3.0-only`). Copyright © 2026 Minh Hoang.
