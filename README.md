@@ -8,12 +8,12 @@ A plug-and-play music app for deep work.
 - No ads.
 - No complex setup.
 - Curated playlists specifically for work, study, reading, and deep focus.
-- Clean & Modern UI.
+- Clean, modern UI.
 - Lightweight:
 	- No MP3 files stored in your vault.
 	- Music comes from public SoundCloud playlists.
 		- Music loads only when needed.
-		- Music consumes much less network data than music video. => Maybe wanna work outside? Not a problem!
+		- Audio-only streaming stays usable on weaker networks.
 
 ## Features
 ### Curated Playlists
@@ -27,7 +27,7 @@ Music comes from public SoundCloud playlists. Music Pro organizes them into focu
 
 ### Personal Playlists
 
-Add your own SoundCloud tracks, playlists, albums. **Create and manage personal playlist** folders, from saving your favorite tracks to renaming, deleting, and reordering folder structure. You could even **turn off** the list that you are not the fan of.
+Add your own SoundCloud tracks, albums, and playlists. **Create and manage personal playlist** folders, rename or delete them, reorder playlists, and hide built-in playlists you do not use.
 
 <p align="center">
   <img src="./assets/readme-personal-add.png" alt="Add SoundCloud music to a personal playlist" width="32%" />
