@@ -22,20 +22,34 @@ A plug-and-play music app for deep work inside Obsidian.
 
 Music comes from public SoundCloud playlists. Music Pro organizes them into focused playlists for work, study, reading, ambience, piano, orchestra, jazz, games, and more.
 
-<p align="center">
-  <img src="./assets/readme-curated-defaults.png" alt="Music Pro curated playlist categories" width="49%" />
-  <img src="./assets/readme-curated-movies-games.png" alt="Music Pro Movies/Games playlists" width="49%" />
-</p>
+<table>
+  <tr>
+    <td width="50%" align="center" style="border:0; padding:0 6px;">
+      <img src="./assets/readme-curated-defaults.png" alt="Music Pro curated playlist categories" width="100%" />
+    </td>
+    <td width="50%" align="center" style="border:0; padding:0 6px;">
+      <img src="./assets/readme-curated-movies-games.png" alt="Music Pro Movies/Games playlists" width="100%" />
+    </td>
+  </tr>
+</table>
 
 ### Personal Playlists
 
 Add your own SoundCloud tracks, playlists, albums. **Create and manage personal playlist** folders, from saving your favorite tracks to renaming, deleting, and reordering folder structure. You could even **turn off** the list that you are not the fan of.
 
-<p align="center">
-  <img src="./assets/readme-personal-add.png" alt="Add SoundCloud music to a personal playlist" width="32%" />
-  <img src="./assets/readme-personal-assign.png" alt="Save curated playlists to MH folder" width="32%" />
-  <img src="./assets/readme-personal-folder-mh.png" alt="MH personal playlist folder" width="32%" />
-</p>
+<table>
+  <tr>
+    <td width="33.333%" align="center" style="border:0; padding:0 5px;">
+      <img src="./assets/readme-personal-add.png" alt="Add SoundCloud music to a personal playlist" width="100%" />
+    </td>
+    <td width="33.333%" align="center" style="border:0; padding:0 5px;">
+      <img src="./assets/readme-personal-assign.png" alt="Save curated playlists to MH folder" width="100%" />
+    </td>
+    <td width="33.333%" align="center" style="border:0; padding:0 5px;">
+      <img src="./assets/readme-personal-folder-mh.png" alt="MH personal playlist folder" width="100%" />
+    </td>
+  </tr>
+</table>
 
 ### Auto-pause For Other Audio
 
@@ -47,10 +61,16 @@ When a website, webview, audio, or video inside Obsidian starts playing, Music P
 
 Use **full-size mode** when you want the complete app: player, tracks, playlists, search, and folders. Use **compact mode** when you want small controls nearby; it can auto-hide and tuck into the sidebar when you do not need it.
 
-<p align="center">
-  <img src="./assets/readme-full-size.png" alt="Music Pro full-size mode" width="49%" />
-  <img src="./assets/readme-compact.png" alt="Music Pro compact mode" width="49%" />
-</p>
+<table>
+  <tr>
+    <td width="50%" align="center" style="border:0; padding:0 6px;">
+      <img src="./assets/readme-full-size.png" alt="Music Pro full-size mode" width="100%" />
+    </td>
+    <td width="50%" align="center" style="border:0; padding:0 6px;">
+      <img src="./assets/readme-compact.png" alt="Music Pro compact mode" width="100%" />
+    </td>
+  </tr>
+</table>
 
 <p align="center">
   <img src="./assets/readme-auto-hide.affinity-editable.svg" alt="Music Pro compact auto-hide" width="100%" />
