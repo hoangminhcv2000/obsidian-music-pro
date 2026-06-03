@@ -22,13 +22,20 @@ A plug-and-play music app for deep work inside Obsidian.
 
 Music comes from public SoundCloud playlists. Music Pro organizes them into focused playlists for work, study, reading, ambience, piano, orchestra, jazz, games, and more.
 
-![Curated Playlists](./assets/readme-curated-playlists.png)
+<p align="center">
+  <img src="./assets/readme-curated-defaults.png" alt="Music Pro curated playlist categories" width="49%" />
+  <img src="./assets/readme-curated-movies-games.png" alt="Music Pro Movies/Games playlists" width="49%" />
+</p>
 
 ### Personal Playlists
 
 Add your own SoundCloud tracks, playlists, albums. **Create and manage personal playlist** folders, from saving your favorite tracks to renaming, deleting, and reordering folder structure. You could even **turn off** the list that you are not the fan of.
 
-![Personal Playlists](./assets/readme-personal-playlists.png)
+<p align="center">
+  <img src="./assets/readme-personal-add.png" alt="Add SoundCloud music to a personal playlist" width="32%" />
+  <img src="./assets/readme-personal-assign.png" alt="Save curated playlists to MH folder" width="32%" />
+  <img src="./assets/readme-personal-folder-mh.png" alt="MH personal playlist folder" width="32%" />
+</p>
 
 ### Auto-pause For Other Audio
 
@@ -40,10 +47,13 @@ When a website, webview, audio, or video inside Obsidian starts playing, Music P
 
 Use **full-size mode** when you want the complete app: player, tracks, playlists, search, and folders. Use **compact mode** when you want small controls nearby; it can auto-hide and tuck into the sidebar when you do not need it.
 
-![Full-size and Compact](./assets/readme-player-sizes.png)
+<p align="center">
+  <img src="./assets/readme-full-size.png" alt="Music Pro full-size mode" width="49%" />
+  <img src="./assets/readme-compact.png" alt="Music Pro compact mode" width="49%" />
+</p>
 
 <p align="center">
-  <img src="./assets/readme-auto-hide.affinity-editable.svg" alt="Music Pro compact auto-hide" width="100%" />
+  <img src="./assets/readme-auto-hide.png" alt="Music Pro compact auto-hide" width="100%" />
 </p>
 ## Installation
 
@@ -69,16 +79,20 @@ In Obsidian's command palette, search for **Music Pro** and run:
 - Music Pro: Volume 90%
 ## Privacy and Network Use
 
-Music Pro is not affiliated with SoundCloud or Obsidian. Music Pro has no telemetry, analytics, ads, or account requirement.
+Music Pro has no telemetry, analytics, ads, or account requirement.
 
 It only connects to:
 
 - SoundCloud, to play music and load public playlist info.
+- Your remote catalog URL, only if you enable remote catalog refresh.
 
 Saved locally in Obsidian:
 
 - Your personal playlists and SoundCloud links.
-- Playback, recent items, order, ranking, cache, and UI preferences.
+- Playback, recent items, order, ranking, and UI preferences.
+- Cached catalog data, if remote catalog refresh is enabled.
+
+Music Pro is not affiliated with SoundCloud or Obsidian.
 
 ## Future Roadmap
 
