@@ -1,7 +1,7 @@
 {
   "name": "music-pro",
-  "version": "1.0.2",
-  "description": "A plug-and-play music app for deep work inside Obsidian.",
+  "version": "1.0.3",
+  "description": "A plug-and-play music app for deep work.",
   "type": "module",
   "private": true,
   "scripts": {

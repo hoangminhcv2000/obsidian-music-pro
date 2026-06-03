@@ -21,30 +21,193 @@ interface SoundCloudWidget {
   getSounds?(callback: (value: any[]) => void): void;
   getCurrentSound?(callback: (value: any) => void): void;
   getCurrentSoundIndex?(callback: (value: number) => void): void;
+  destroy?(): void;
 }
 
-declare global {
-  interface Window {
-    SC?: {
-      Widget: ((iframe: HTMLIFrameElement | string) => SoundCloudWidget) & {
-        Events: Record<string, string>;
-      };
-    };
-  }
-}
-
-const WIDGET_API_URL = "https://w.soundcloud.com/player/api.js";
+const SOUNDCLOUD_WIDGET_ORIGIN = "https://w.soundcloud.com";
+const SOUNDCLOUD_WIDGET_EVENTS = {
+  LOAD_PROGRESS: "loadProgress",
+  PLAY_PROGRESS: "playProgress",
+  PLAY: "play",
+  PAUSE: "pause",
+  FINISH: "finish",
+  SEEK: "seek",
+  READY: "ready",
+  ERROR: "error"
+} as const;
 const EXCLUDED_PLAYLIST_TRACK_MAX_DURATION_MS = 30_000;
 const PLAYLIST_METADATA_CACHE_MS = 6 * 60 * 60 * 1000;
 const PLAYLIST_METADATA_FAILURE_BACKOFF_MS = 10 * 60 * 1000;
 const POSITION_EMIT_MIN_INTERVAL_MS = 250;
+
+function makeSoundCloudEmbedUrl(url: string, options: Record<string, any> = {}): string {
+  const params = new URLSearchParams();
+  params.set("url", url);
+  for (const [key, value] of Object.entries(options)) {
+    if (key === "callback" || value === undefined || value === null) continue;
+    params.set(key, key === "start_track" ? String(parseInt(String(value), 10) || 0) : value ? "true" : "false");
+  }
+  return `${SOUNDCLOUD_WIDGET_ORIGIN}/player/?${params.toString()}`;
+}
+
+class SoundCloudWidgetBridge implements SoundCloudWidget {
+  private iframe: HTMLIFrameElement;
+  private isReady = false;
+  private playEventFired = false;
+  private eventCallbacks = new Map<string, Set<(...args: any[]) => void>>();
+  private responseCallbacks = new Map<string, Array<(value: any) => void>>();
+  private handleMessage = (event: MessageEvent) => this.onMessage(event);
+
+  constructor(iframe: HTMLIFrameElement) {
+    this.iframe = iframe;
+    window.addEventListener("message", this.handleMessage, false);
+  }
+
+  destroy(): void {
+    window.removeEventListener("message", this.handleMessage, false);
+    this.eventCallbacks.clear();
+    this.responseCallbacks.clear();
+  }
+
+  bind(eventName: string, listener: (...args: any[]) => void): void {
+    const callbacks = this.eventCallbacks.get(eventName) || new Set<(...args: any[]) => void>();
+    callbacks.add(listener);
+    this.eventCallbacks.set(eventName, callbacks);
+    if (eventName === SOUNDCLOUD_WIDGET_EVENTS.READY && this.isReady) {
+      window.setTimeout(() => listener(), 1);
+      return;
+    }
+    if (this.isReady) this.send("addEventListener", eventName);
+  }
+
+  unbind(eventName: string): void {
+    this.eventCallbacks.delete(eventName);
+    if (this.isReady && eventName !== SOUNDCLOUD_WIDGET_EVENTS.READY) {
+      this.send("removeEventListener", eventName);
+    }
+  }
+
+  load(url: string, options: Record<string, any>): void {
+    this.isReady = false;
+    this.playEventFired = false;
+    if (typeof options.callback === "function") {
+      const onReady = () => {
+        this.eventCallbacks.get(SOUNDCLOUD_WIDGET_EVENTS.READY)?.delete(onReady);
+        options.callback();
+      };
+      this.bind(SOUNDCLOUD_WIDGET_EVENTS.READY, onReady);
+    }
+    this.iframe.src = makeSoundCloudEmbedUrl(url, options);
+  }
+
+  play(): void {
+    this.send("play");
+  }
+
+  pause(): void {
+    this.send("pause");
+  }
+
+  toggle(): void {
+    this.send("toggle");
+  }
+
+  seekTo(milliseconds: number): void {
+    this.send("seekTo", milliseconds);
+  }
+
+  setVolume(volume: number): void {
+    this.send("setVolume", volume);
+  }
+
+  next(): void {
+    this.send("next");
+  }
+
+  prev(): void {
+    this.send("prev");
+  }
+
+  skip(soundIndex: number): void {
+    this.send("skip", soundIndex);
+  }
+
+  getDuration(callback: (value: number) => void): void {
+    this.request("getDuration", callback);
+  }
+
+  getPosition(callback: (value: number) => void): void {
+    this.request("getPosition", callback);
+  }
+
+  getSounds(callback: (value: any[]) => void): void {
+    this.request("getSounds", callback);
+  }
+
+  getCurrentSound(callback: (value: any) => void): void {
+    this.request("getCurrentSound", callback);
+  }
+
+  getCurrentSoundIndex(callback: (value: number) => void): void {
+    this.request("getCurrentSoundIndex", callback);
+  }
+
+  private request<T>(method: string, callback: (value: T) => void): void {
+    const callbacks = this.responseCallbacks.get(method) || [];
+    callbacks.push(callback as (value: any) => void);
+    this.responseCallbacks.set(method, callbacks);
+    this.send(method);
+  }
+
+  private send(method: string, value?: unknown): void {
+    const target = this.iframe.contentWindow;
+    if (!target) return;
+    target.postMessage(JSON.stringify({ method, value }), SOUNDCLOUD_WIDGET_ORIGIN);
+  }
+
+  private onMessage(event: MessageEvent): void {
+    if (event.source !== this.iframe.contentWindow) return;
+    if (event.origin && event.origin !== SOUNDCLOUD_WIDGET_ORIGIN) return;
+    let payload: { method?: string; value?: any };
+    try {
+      payload = JSON.parse(String(event.data || "{}"));
+    } catch {
+      return;
+    }
+    const method = String(payload.method || "");
+    if (!method) return;
+    if (method === SOUNDCLOUD_WIDGET_EVENTS.READY) {
+      this.isReady = true;
+      for (const eventName of this.eventCallbacks.keys()) {
+        if (eventName !== SOUNDCLOUD_WIDGET_EVENTS.READY) this.send("addEventListener", eventName);
+      }
+    }
+    if (method === SOUNDCLOUD_WIDGET_EVENTS.PLAY) this.playEventFired = true;
+    if (method === SOUNDCLOUD_WIDGET_EVENTS.PLAY_PROGRESS && !this.playEventFired) {
+      this.playEventFired = true;
+      this.emit(SOUNDCLOUD_WIDGET_EVENTS.PLAY, payload.value);
+    }
+    this.emit(method, payload.value);
+  }
+
+  private emit(method: string, value: any): void {
+    const args = value === undefined ? [] : [value];
+    const responseCallbacks = this.responseCallbacks.get(method);
+    if (responseCallbacks?.length) {
+      this.responseCallbacks.delete(method);
+      for (const callback of responseCallbacks) callback(value);
+    }
+    for (const callback of this.eventCallbacks.get(method) || []) {
+      callback(...args);
+    }
+  }
+}
 
 export class SoundCloudPlayer {
   private store: PlayerStore;
   private hostEl: HTMLElement | null = null;
   private iframeEl: HTMLIFrameElement | null = null;
   private widget: SoundCloudWidget | null = null;
-  private scriptPromise: Promise<void> | null = null;
   private currentUrl: string | null = null;
   private progressTimer: number | null = null;
   private loadTimeout: number | null = null;
@@ -74,6 +237,7 @@ export class SoundCloudPlayer {
     this.hostEl?.remove();
     this.hostEl = null;
     this.iframeEl = null;
+    this.widget?.destroy?.();
     this.widget = null;
     this.loadToken += 1;
     this.playlistHydrationToken += 1;
@@ -109,12 +273,11 @@ export class SoundCloudPlayer {
     });
     try {
       assertEmbeddableSoundCloudUrl(item.url);
-      await this.ensureScript();
       if (!this.isCurrentLoad(loadToken, item)) return;
       this.ensureIframe(item.url);
-      if (!this.iframeEl || !window.SC?.Widget) throw new Error("SoundCloud widget is not available.");
+      if (!this.iframeEl) throw new Error("SoundCloud widget is not available.");
       if (!this.widget) {
-        this.widget = window.SC.Widget(this.iframeEl);
+        this.widget = new SoundCloudWidgetBridge(this.iframeEl);
         this.bindWidgetEvents();
       }
       this.lastKnownPositionMs = resumeTarget?.positionMs ?? 0;
@@ -293,30 +456,9 @@ export class SoundCloudPlayer {
     return `https://w.soundcloud.com/player/?${params.toString()}`;
   }
 
-  private ensureScript(): Promise<void> {
-    if (window.SC?.Widget) return Promise.resolve();
-    if (this.scriptPromise) return this.scriptPromise;
-    this.scriptPromise = new Promise((resolve, reject) => {
-      const existing = document.querySelector<HTMLScriptElement>(`script[src="${WIDGET_API_URL}"]`);
-      if (existing) {
-        existing.addEventListener("load", () => resolve(), { once: true });
-        existing.addEventListener("error", () => reject(new Error("Unable to load SoundCloud Widget API.")), { once: true });
-        if (window.SC?.Widget) resolve();
-        return;
-      }
-      const script = document.createElement("script");
-      script.src = WIDGET_API_URL;
-      script.async = true;
-      script.addEventListener("load", () => resolve(), { once: true });
-      script.addEventListener("error", () => reject(new Error("Unable to load SoundCloud Widget API.")), { once: true });
-      document.head.appendChild(script);
-    });
-    return this.scriptPromise;
-  }
-
   private bindWidgetEvents(): void {
-    const events = window.SC?.Widget.Events;
-    if (!events || !this.widget) return;
+    const events = SOUNDCLOUD_WIDGET_EVENTS;
+    if (!this.widget) return;
     this.widget.bind(events.READY, () => {
       if (this.hasPendingWidgetLoad()) return;
       this.clearLoadWatchdog();

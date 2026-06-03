@@ -331,7 +331,7 @@ check("edge buttons align with the player rails", async () => {
   const edgeCss = css.slice(marker);
   assert(main.includes('const ribbonIcon = this.addRibbonIcon("music-2", "Music Pro", () => this.toggleMode());') && main.includes('ribbonIcon.addClass("music-pro-ribbon-action")'), "Music Pro ribbon icon should have a scoped class for edge inset");
   assert(edgeCss.includes(".side-dock-ribbon-action.music-pro-ribbon-action") && edgeCss.includes("translateX(4px)"), "ribbon button should be nudged inward from the hard left edge");
-  assert(edgeCss.includes("padding-right: 18px") && edgeCss.includes("column-gap: 16px"), "now-playing controls should breathe away from the card edge");
+  assert(edgeCss.includes("padding-right: 18px") && edgeCss.includes("gap: 0 16px"), "now-playing controls should breathe away from the card edge");
   assert(edgeCss.includes(".music-pro-now-card-option-b .music-pro-now-bottomline") && edgeCss.includes("padding-right: 4px"), "player buttons and sliders should share a subtle right rail");
   assert(edgeCss.includes("padding-left: 24px") && edgeCss.includes("padding-right: 24px"), "compact sidebar width should keep content away from view borders");
 });
@@ -431,7 +431,7 @@ check("playlist rail stays vertical and UI copy is title-cased", async () => {
   assert(settingsTab.includes("Playlists") && settingsTab.includes("Visible Playlists") && settingsTab.includes("New Personal Playlist"), "settings should use simple Playlist naming");
   assert(sidebar.includes('text: "Add Music"') && sidebar.includes('text: "Add To Playlist"') && quickPicker.includes('text: "Quick Pick"'), "headlines should use title case");
   assert(v18.includes("@container (max-width: 520px)") && v18.includes("flex-direction: column") && v18.includes("grid-template-columns: minmax(118px"), "folder rail should remain vertical at moderately narrow widths");
-  assert(v18.includes("scrollbar-width: none") && v18.includes("::-webkit-scrollbar"), "any horizontal folder/chip overflow should hide scrollbars");
+  assert(v18.includes("::-webkit-scrollbar") && v18.includes("display: none"), "any horizontal folder/chip overflow should hide Chromium scrollbars without CSS scrollbar-width warnings");
 });
 
 check("unused playlist categories can be disabled for real performance savings", async () => {
@@ -838,7 +838,7 @@ check("playlist rail actions stay clear of search", async () => {
   assert(marker > css.lastIndexOf("UI audit v23"), "playlist/search collision fix should override previous rail rules");
   const v24 = css.slice(marker);
   assert(sidebar.includes('text: "Playlists"') && sidebar.includes('"Add SoundCloud link or Personal Playlist"'), "rail should use plural Playlists naming in visible/header copy");
-  assert(v24.includes("grid-template-columns: minmax(236px, 0.40fr) minmax(0, 1fr)") && v24.includes("column-gap: 22px"), "desktop rail should reserve room and spacing before the search field");
+  assert(v24.includes("grid-template-columns: minmax(236px, 0.40fr) minmax(0, 1fr)") && v24.includes("gap: 0 22px"), "desktop rail should reserve room and spacing before the search field");
   assert(v24.includes(".music-pro-playlist-content") && v24.includes(".music-pro-library-panel .music-pro-search-wrap") && v24.includes("min-width: 0"), "search column should shrink safely without being overlapped");
   assert(v24.includes("@container (max-width: 640px)") && v24.includes("grid-template-columns: minmax(176px, 0.45fr) minmax(0, 1fr)") && v24.includes("row-gap: 8px"), "narrow widths should stack rail buttons under the title instead of spilling into search");
   assert(v24.includes("@container (max-width: 430px)") && v24.includes("grid-template-columns: minmax(0, 1fr)") && v24.includes("flex-direction: column"), "very narrow sidebar should stack search below the vertical playlist rail");
@@ -881,14 +881,14 @@ check("settings are open, streamlined, and preset colors are visible", async () 
   assert(settingsTab.includes("createSettingsSection") && settingsTab.includes("music-pro-settings-section") && !settingsTab.includes('createEl("details"') && !settingsTab.includes('createEl("summary"'), "settings should use always-open sections instead of collapsed details accordions");
   assert(!settingsTab.includes("Add Your SoundCloud Link") && !settingsTab.includes("Default Volume") && !settingsTab.includes("Default View") && !settingsTab.includes("Remote Catalog URL") && !settingsTab.includes("Use Remote Catalog"), "settings should omit controls already handled in the main UI or advanced developer-only fields");
   assert(settingsTab.includes("music-pro-accent-swatch-color") && !settingsTab.includes("music-pro-accent-swatch-label"), "accent presets should render color-only chips without visible color names");
-  assert(settingsTab.includes("A plug-and-play music app for deep work inside Obsidian.") && settingsTab.includes("Color and background.") && settingsTab.includes("Choose what shows and loads.") && !settingsTab.includes("Catalog Maintenance") && !settingsTab.includes("Refresh or clear cached catalog data."), "settings should keep catalog maintenance out of the normal user UI");
+  assert(settingsTab.includes("A plug-and-play music app for deep work.") && settingsTab.includes("Color and background.") && settingsTab.includes("Choose what shows and loads.") && !settingsTab.includes("Catalog Maintenance") && !settingsTab.includes("Refresh or clear cached catalog data."), "settings should keep catalog maintenance out of the normal user UI");
   assert(!settingsTab.includes("Keep only behavior that is not already easier to adjust from the player UI.") && !settingsTab.includes("Control what Music Pro indexes, renders, searches, and preserves in this vault.") && !settingsTab.includes("Lightweight maintenance only; add music, loop, volume, and view mode are controlled directly in the Music Pro UI."), "settings should not reintroduce verbose helper copy");
   assert(v31.includes(".music-pro-accent-swatch-color") && v31.includes("background-color: var(--music-pro-swatch)") && v31.includes(".music-pro-accent-swatch-label"), "preset color swatches should show the actual selected color rather than dark generic buttons");
   assert(v31.includes(".music-pro-category-toggle-grid") && v31.includes("repeat(auto-fit, minmax(190px, 1fr))"), "playlist performance toggles should be visible in an open responsive grid");
   const heroMarker = css.lastIndexOf("UI audit v85");
   assert(heroMarker > css.lastIndexOf("UI audit v84"), "settings hero alignment should come after default-like settings gutter fixes");
   const heroCss = css.slice(heroMarker);
-  assert(heroCss.includes(".music-pro-settings.music-pro-fixed-appearance .music-pro-settings-hero h2,\n.music-pro-settings.music-pro-fixed-appearance .music-pro-settings-hero p") && heroCss.includes("padding-inline: 0 !important") && heroCss.includes("text-indent: 0 !important"), "settings hero title and slogan should share one left edge across themes");
+  assert(heroCss.includes(".music-pro-settings.music-pro-fixed-appearance .music-pro-settings-hero h2,\n.music-pro-settings.music-pro-fixed-appearance .music-pro-settings-hero p") && heroCss.includes("padding-inline: 0") && !heroCss.includes("text-indent"), "settings hero title and slogan should share one left edge across themes");
 });
 
 check("Show More rows stay count-free", async () => {
@@ -954,7 +954,7 @@ check("narrow playlist rail is horizontal and Music Pro scrollbars are hidden", 
   assert(marker > css.lastIndexOf("UI audit v34"), "narrow horizontal rail and hidden-scrollbar pass should be the latest sidebar polish");
   const v35 = css.slice(marker);
   assert(v35.includes(".music-pro-view-container .view-content") && v35.includes(".music-pro-sidebar") && v35.includes("overscroll-behavior: contain"), "main Music Pro app scroller should keep scroll functionality while hiding the visible scrollbar");
-  assert(v35.includes("scrollbar-width: none") && v35.includes("-ms-overflow-style: none") && v35.includes("::-webkit-scrollbar") && v35.includes("display: none;"), "Music Pro scroll containers should hide Firefox, legacy Edge, and WebKit scrollbars");
+  assert(v35.includes("-ms-overflow-style: none") && v35.includes("::-webkit-scrollbar") && v35.includes("display: none;"), "Music Pro scroll containers should hide legacy Edge and Chromium scrollbars without CSS scrollbar-width warnings");
   assert(v35.includes("@container (max-width: 430px)") && v35.includes("grid-template-columns: minmax(0, 1fr)") && v35.includes("flex-direction: row") && v35.includes("overflow-x: auto") && v35.includes("overflow-y: hidden"), "very narrow sidebar should keep Playlists as a horizontal rail instead of a tall vertical stack");
   assert(v35.includes("scrollbar-gutter: auto") && v35.includes("padding-right: 0"), "hidden internal playlist scrollbars should not leave a large gutter");
 });
@@ -1031,7 +1031,7 @@ check("Quick Pick stays header-free with hidden scrollbars", async () => {
   assert(!trackPicker.includes("music-pro-mini-track-picker-head") && !trackPicker.includes("Current Playlist") && !trackPicker.includes("sounds.length} tracks"), "inline quick pick should not render a Current Playlist/count header");
   assert(trackPicker.includes('attr: { "aria-label": "Playlist tracks" }'), "inline quick pick should keep a concise accessible label without visible header copy");
   assert(v41.includes(".music-pro-mini-track-picker-head") && v41.includes("display: none"), "any legacy inline quick-pick header should be visually suppressed");
-  assert(v41.includes(".music-pro-mini-track-picker-list") && v41.includes(".music-pro-quick-list") && v41.includes("scrollbar-width: none") && v41.includes("-ms-overflow-style: none") && v41.includes("::-webkit-scrollbar") && v41.includes("display: none"), "quick pick scroll containers should keep scrolling while hiding visible scrollbars");
+  assert(v41.includes(".music-pro-mini-track-picker-list") && v41.includes(".music-pro-quick-list") && v41.includes("-ms-overflow-style: none") && v41.includes("::-webkit-scrollbar") && v41.includes("display: none"), "quick pick scroll containers should keep scrolling while hiding visible Chromium scrollbars");
 });
 
 check("compact dock glides smoothly and uses size-mode icons", async () => {
@@ -1072,8 +1072,8 @@ check("player timeline and volume sliders have no white rim", async () => {
   assert(marker > css.lastIndexOf("UI audit v43"), "player slider rim removal should come after compact borderless slider polish");
   const v44 = css.slice(marker);
   assert(v44.includes("--music-pro-range-thumb: color-mix(in srgb, var(--text-muted) 74%, var(--background-secondary) 26%)"), "range thumb should be muted gray material, not a white knob/rim");
-  assert(v44.includes(".music-pro-now-card-option-b .music-pro-seek-slider,") && v44.includes(".music-pro-now-card-option-b .music-pro-volume,") && v44.includes("border: 0 !important") && v44.includes("outline: 0 !important") && v44.includes("box-shadow: none !important"), "full-player timeline and volume inputs should not render white outlines or halos");
-  assert(v44.includes(".music-pro-now-card-option-b .music-pro-seek-slider::-webkit-slider-thumb") && v44.includes(".music-pro-now-card-option-b .music-pro-volume::-webkit-slider-thumb") && v44.includes("background: var(--music-pro-range-thumb)") && v44.includes("box-shadow: var(--music-pro-range-thumb-shadow) !important"), "WebKit full-player slider thumbs should be muted and borderless");
+  assert(v44.includes(".music-pro-now-card-option-b .music-pro-seek-slider,") && v44.includes(".music-pro-now-card-option-b .music-pro-volume,") && v44.includes("border: 0") && v44.includes("outline: 0") && v44.includes("box-shadow: none"), "full-player timeline and volume inputs should not render white outlines or halos");
+  assert(v44.includes(".music-pro-now-card-option-b .music-pro-seek-slider::-webkit-slider-thumb") && v44.includes(".music-pro-now-card-option-b .music-pro-volume::-webkit-slider-thumb") && v44.includes("background: var(--music-pro-range-thumb)") && v44.includes("box-shadow: var(--music-pro-range-thumb-shadow)"), "WebKit full-player slider thumbs should be muted and borderless");
   assert(v44.includes(".music-pro-now-card-option-b .music-pro-seek-slider::-moz-range-thumb") && v44.includes(".music-pro-now-card-option-b .music-pro-volume::-moz-range-thumb"), "Firefox full-player slider thumbs should also be borderless");
   assert(v44.includes(".music-pro-mini-sliders .music-pro-volume::-webkit-slider-thumb") && v44.includes(".music-pro-mini-sliders .music-pro-volume::-moz-range-thumb"), "compact dock sliders should keep the same no-white-rim treatment");
 });
@@ -1083,7 +1083,7 @@ check("full player delays meter stacking until truly tiny", async () => {
   const marker = css.lastIndexOf("UI audit v50");
   assert(marker > css.lastIndexOf("UI audit v49"), "meter stacking threshold should override the latest compact glyph pass");
   const v48 = css.slice(marker);
-  assert(v48.includes("grid-template-columns: minmax(0, 1fr) minmax(112px, 0.42fr)") && v48.includes("column-gap: 9px"), "screenshot-width player should keep timeline and volume side-by-side instead of stacking too early");
+  assert(v48.includes("grid-template-columns: minmax(0, 1fr) minmax(112px, 0.42fr)") && v48.includes("gap: 0 9px"), "screenshot-width player should keep timeline and volume side-by-side instead of stacking too early");
   assert(v48.includes(".music-pro-now-card-option-b .music-pro-progress-compact") && v48.includes("grid-template-columns: 38px minmax(50px, 1fr) 38px"), "horizontal timeline row should stay compact enough for narrow sidebars");
   assert(v48.includes(".music-pro-now-card-option-b .music-pro-now-volume") && v48.includes("grid-template-columns: 22px minmax(44px, 1fr) 44px"), "horizontal volume row should use compact icon/slider/percent columns");
   assert(v48.includes("--music-pro-meter-opacity") && v48.includes("opacity: var(--music-pro-meter-opacity, 0.84)") && v48.includes(".music-pro-now-card-option-b .music-pro-now-volume-icon"), "time labels, volume percent, and volume symbol should keep matching muted opacity");
@@ -1096,7 +1096,7 @@ check("compact player slider rails match thickness and glyphs are readable", asy
   assert(marker > css.lastIndexOf("UI audit v46"), "compact slider/glyph readability pass should come after final narrow full-player meter alignment");
   const v46 = css.slice(marker);
   assert(v46.includes("--music-pro-mini-range-track-height: 5px"), "compact timeline and volume rails should share one explicit thickness variable");
-  assert(v46.includes(".music-pro-mini-sliders .music-pro-seek-slider::-webkit-slider-runnable-track,\n.music-pro-mini-sliders .music-pro-volume::-webkit-slider-runnable-track") && v46.includes("height: var(--music-pro-mini-range-track-height) !important"), "WebKit compact timeline and volume rails should use the same height");
+  assert(v46.includes(".music-pro-mini-sliders .music-pro-seek-slider::-webkit-slider-runnable-track,\n.music-pro-mini-sliders .music-pro-volume::-webkit-slider-runnable-track") && v46.includes("height: var(--music-pro-mini-range-track-height)"), "WebKit compact timeline and volume rails should use the same height");
   assert(v46.includes(".music-pro-mini-sliders .music-pro-seek-slider::-moz-range-track,\n.music-pro-mini-sliders .music-pro-volume::-moz-range-track") && v46.includes(".music-pro-mini-sliders .music-pro-seek-slider::-moz-range-progress,\n.music-pro-mini-sliders .music-pro-volume::-moz-range-progress"), "Firefox compact timeline and volume rails/progress should use the same height");
   assert(v46.includes(".music-pro-mini-transport .music-pro-icon-button svg") && v46.includes("width: 19px") && v46.includes("stroke-width: 2.8px"), "compact secondary symbols should be large enough to identify");
   assert(v46.includes(".music-pro-mini-transport .music-pro-mini-play svg") && v46.includes("width: 24px") && v46.includes("stroke-width: 2.85px"), "compact play/pause symbol should be materially larger than before");
@@ -1123,7 +1123,7 @@ check("Tracks loading and loaded states share one measured frame", async () => {
   assert(sidebar.includes("music-pro-playlist-loading-label"), "loading copy should have a dedicated class so it can be removed from visual layout without losing context");
   assert(v52.includes(`.music-pro-playlist-tracks,
 .music-pro-playlist-tracks.is-loading`) && v52.includes("--music-pro-tracks-panel-height: clamp(356px, 38vh, 390px)") && v52.includes("block-size: var(--music-pro-tracks-panel-height)") && v52.includes("max-block-size: var(--music-pro-tracks-panel-height)"), "loading and hydrated Tracks cards should use the exact same measured frame");
-  assert(v52.includes(".music-pro-playlist-tracks.is-loading .music-pro-playlist-loading-label") && v52.includes("clip-path: inset(50%)") && v52.includes("position: absolute"), "loading text should not consume extra vertical space before the skeleton list");
+  assert(v52.includes(".music-pro-playlist-tracks.is-loading .music-pro-playlist-loading-label") && !v52.includes("clip-path") && v52.includes("position: absolute"), "loading text should not consume extra vertical space before the skeleton list");
   assert(v52.includes(`.music-pro-playlist-tracks .music-pro-playlist-list,
 .music-pro-playlist-tracks .music-pro-playlist-skeleton-list`) && v52.includes("flex: 1 1 0") && v52.includes("margin-top: 0"), "real and skeleton track lists should occupy the same slot inside the fixed card");
   assert(v52.includes(".music-pro-playlist-tracks .music-pro-playlist-skeleton-track") && v52.includes("min-height: 56px"), "skeleton rows should match hydrated track row height");
@@ -1135,11 +1135,11 @@ check("timeline and volume knobs share one centered axis", async () => {
   assert(marker > css.lastIndexOf("UI audit v52"), "slider axis pass should come after the latest Tracks frame polish");
   const v53 = css.slice(marker);
   assert(v53.includes("--music-pro-player-range-track-height: 6px") && v53.includes("--music-pro-player-range-thumb-size: 22px"), "full-player timeline and volume should share one track/thumb size pair");
-  assert(v53.includes(".music-pro-now-card-option-b .music-pro-seek-slider,\n.music-pro-now-card-option-b .music-pro-volume") && v53.includes("height: var(--music-pro-player-range-hit-height) !important"), "full-player range inputs should share the same hit height");
+  assert(v53.includes(".music-pro-now-card-option-b .music-pro-seek-slider,\n.music-pro-now-card-option-b .music-pro-volume") && v53.includes("height: var(--music-pro-player-range-hit-height)"), "full-player range inputs should share the same hit height");
   assert(v53.includes(".music-pro-mini-sliders .music-pro-seek-slider,\n.music-pro-mini-sliders .music-pro-volume") && v53.includes("--music-pro-player-range-thumb-size: 20px"), "compact timeline and volume should share the same compact thumb size");
-  assert(v53.includes(".music-pro-now-card-option-b .music-pro-seek-slider::-webkit-slider-thumb,\n.music-pro-now-card-option-b .music-pro-volume::-webkit-slider-thumb") && v53.includes("margin-top: calc((var(--music-pro-player-range-track-height) - var(--music-pro-player-range-thumb-size)) / 2) !important"), "WebKit slider thumbs should be vertically centered on the colored rail");
-  assert(v53.includes("border-radius: 50% !important") && v53.includes("aspect-ratio: 1 / 1"), "range thumbs should stay perfectly circular");
-  assert(v53.includes(".music-pro-now-card-option-b .music-pro-seek-slider::-moz-range-thumb,\n.music-pro-now-card-option-b .music-pro-volume::-moz-range-thumb") && v53.includes("box-sizing: border-box !important"), "Firefox range thumbs should use the same circular box model");
+  assert(v53.includes(".music-pro-now-card-option-b .music-pro-seek-slider::-webkit-slider-thumb,\n.music-pro-now-card-option-b .music-pro-volume::-webkit-slider-thumb") && v53.includes("margin-top: calc((var(--music-pro-player-range-track-height) - var(--music-pro-player-range-thumb-size)) / 2)"), "WebKit slider thumbs should be vertically centered on the colored rail");
+  assert(v53.includes("border-radius: 50%") && v53.includes("aspect-ratio: 1 / 1"), "range thumbs should stay perfectly circular");
+  assert(v53.includes(".music-pro-now-card-option-b .music-pro-seek-slider::-moz-range-thumb,\n.music-pro-now-card-option-b .music-pro-volume::-moz-range-thumb") && v53.includes("box-sizing: border-box"), "Firefox range thumbs should use the same circular box model");
 });
 
 check("compact button glyph sizing targets Obsidian svg-icon variables", async () => {
@@ -1150,10 +1150,10 @@ check("compact button glyph sizing targets Obsidian svg-icon variables", async (
   assert(obsidianChangelog.includes("setIcon") && obsidianChangelog.includes("--icon-size"), "local Obsidian package should document setIcon sizing through --icon-size");
   const v54 = css.slice(marker);
   assert(v54.includes("--music-pro-mini-secondary-icon-size: 26px") && v54.includes("--music-pro-mini-play-icon-size: 32px") && v54.includes("--music-pro-mini-volume-icon-size: 25px"), "compact icon sizes should be materially larger than the old tiny symbols");
-  assert(v54.includes(".music-pro-mini-transport .music-pro-icon-button") && v54.includes("--icon-size: var(--music-pro-mini-secondary-icon-size) !important"), "secondary compact buttons should override Obsidian's --icon-size variable");
-  assert(v54.includes(".music-pro-mini-transport .music-pro-mini-play") && v54.includes("--icon-size: var(--music-pro-mini-play-icon-size) !important"), "compact play button should override Obsidian's --icon-size variable");
-  assert(v54.includes(".music-pro-mini-sliders .music-pro-mini-volume-icon") && v54.includes("--icon-size: var(--music-pro-mini-volume-icon-size) !important"), "compact volume symbol should override Obsidian's --icon-size variable");
-  assert(v54.includes(".svg-icon") && v54.includes("width: var(--music-pro-mini-secondary-icon-size) !important") && v54.includes("height: var(--music-pro-mini-play-icon-size) !important") && v54.includes("stroke-width: 3.35px !important"), "the real .svg-icon boxes should be force-sized, not only generic svg selectors");
+  assert(v54.includes(".music-pro-mini-transport .music-pro-icon-button") && v54.includes("--icon-size: var(--music-pro-mini-secondary-icon-size)"), "secondary compact buttons should override Obsidian's --icon-size variable");
+  assert(v54.includes(".music-pro-mini-transport .music-pro-mini-play") && v54.includes("--icon-size: var(--music-pro-mini-play-icon-size)"), "compact play button should override Obsidian's --icon-size variable");
+  assert(v54.includes(".music-pro-mini-sliders .music-pro-mini-volume-icon") && v54.includes("--icon-size: var(--music-pro-mini-volume-icon-size)"), "compact volume symbol should override Obsidian's --icon-size variable");
+  assert(v54.includes(".svg-icon") && v54.includes("width: var(--music-pro-mini-secondary-icon-size)") && v54.includes("height: var(--music-pro-mini-play-icon-size)") && v54.includes("stroke-width: 3.35px"), "the real .svg-icon boxes should be force-sized, not only generic svg selectors");
   assert(v54.includes("overflow: visible") && v54.includes("justify-content: center"), "oversized compact glyphs should stay centered and avoid clipping inside pill buttons");
 });
 
@@ -1225,9 +1225,9 @@ check("compact icons match full-size player line style", async () => {
   const v57 = css.slice(marker);
   assert(v57.includes("--music-pro-mini-secondary-icon-size: 17px") && v57.includes("--music-pro-mini-play-icon-size: 22px") && v57.includes("--music-pro-mini-volume-icon-size: 19px"), "compact icons should be readable but no longer oversized like the rejected screenshot");
   assert(v57.includes("--music-pro-mini-icon-stroke: 2.25px") && v57.includes("--music-pro-mini-play-icon-stroke: 2.35px"), "compact icons should use the same calm Lucide stroke family as the full-size player");
-  assert(v57.includes("--icon-size: var(--music-pro-mini-secondary-icon-size) !important") && v57.includes("--icon-size: var(--music-pro-mini-play-icon-size) !important"), "Obsidian setIcon variable sizing should still be controlled after shrinking the glyph art");
+  assert(v57.includes("--icon-size: var(--music-pro-mini-secondary-icon-size)") && v57.includes("--icon-size: var(--music-pro-mini-play-icon-size)"), "Obsidian setIcon variable sizing should still be controlled after shrinking the glyph art");
   assert(v57.includes("color-mix(in srgb, var(--text-muted) 86%, var(--text-normal) 14%)"), "secondary compact icons should use the quiet full-player control color, not shouty bright glyphs");
-  assert(v57.includes(".music-pro-mini-transport .music-pro-icon-button svg *") && v57.includes("stroke-width: var(--music-pro-mini-icon-stroke) !important"), "nested Lucide paths should be forced back to full-player stroke weight");
+  assert(v57.includes(".music-pro-mini-transport .music-pro-icon-button svg *") && v57.includes("stroke-width: var(--music-pro-mini-icon-stroke)"), "nested Lucide paths should be forced back to full-player stroke weight");
 });
 
 check("slider handles sit slightly lower on full and compact rails", async () => {
@@ -1237,7 +1237,7 @@ check("slider handles sit slightly lower on full and compact rails", async () =>
   const v58 = css.slice(marker);
   assert(v58.includes("--music-pro-player-range-thumb-y-offset: 4px"), "slider handles should move down by a stronger 4px visual offset");
   assert(v58.includes(".music-pro-now-card-option-b .music-pro-seek-slider::-webkit-slider-thumb,\n.music-pro-now-card-option-b .music-pro-volume::-webkit-slider-thumb") && v58.includes(".music-pro-mini-sliders .music-pro-seek-slider::-webkit-slider-thumb,\n.music-pro-mini-sliders .music-pro-volume::-webkit-slider-thumb"), "both full and compact WebKit slider thumbs should receive the same offset");
-  assert(v58.includes("margin-top: calc(((var(--music-pro-player-range-track-height) - var(--music-pro-player-range-thumb-size)) / 2) + var(--music-pro-player-range-thumb-y-offset)) !important"), "WebKit offset should preserve the existing track/thumb centering formula and then nudge down");
+  assert(v58.includes("margin-top: calc(((var(--music-pro-player-range-track-height) - var(--music-pro-player-range-thumb-size)) / 2) + var(--music-pro-player-range-thumb-y-offset))"), "WebKit offset should preserve the existing track/thumb centering formula and then nudge down");
   assert(v58.includes(".music-pro-now-card-option-b .music-pro-seek-slider::-moz-range-thumb,\n.music-pro-now-card-option-b .music-pro-volume::-moz-range-thumb") && v58.includes(".music-pro-mini-sliders .music-pro-seek-slider::-moz-range-thumb,\n.music-pro-mini-sliders .music-pro-volume::-moz-range-thumb"), "Firefox slider thumbs should keep the same full/compact treatment");
   assert(v58.includes("transform: translateY(var(--music-pro-player-range-thumb-y-offset))"), "Firefox offset should use the shared y-offset variable");
 });
@@ -1263,7 +1263,7 @@ check("new playlist loading keeps the clicked row locked until hydration settles
   assert(sidebar.includes("if (!this.shouldKeepPendingScrollSnapshot(snapshot)) this.pendingScrollSnapshot = null"), "restore timeout should not clear a playlist-load lock while SoundCloud is still emitting late renders");
   assert(sidebar.includes("suppressMouseFocus") && sidebar.includes('event.pointerType === "touch"') && sidebar.includes("event.preventDefault()") && sidebar.includes(".music-pro-folder-item-drag-handle"), "mouse activation should not steal focus/scroll, while touch and drag handles remain unaffected");
   assert(sidebar.includes("markKeyboardScrollInteraction") && sidebar.includes('[role="button"]') && sidebar.includes("this.pendingScrollSnapshot = null"), "manual scrolling should still cancel locks, but keyboard activation on playlist rows should not cancel its own snapshot");
-  assert(v60.includes("scroll-behavior: auto !important") && v60.includes(".music-pro-view-container *"), "Music Pro should avoid smooth-scroll animation during programmatic restoration");
+  assert(v60.includes("scroll-behavior: auto") && v60.includes(".music-pro-view-container *"), "Music Pro should avoid smooth-scroll animation during programmatic restoration");
 });
 
 check("compact icons use the exact full-player Lucide recipe", async () => {
@@ -1273,12 +1273,12 @@ check("compact icons use the exact full-player Lucide recipe", async () => {
   const v62 = css.slice(marker);
   assert(v62.includes("--music-pro-player-control-icon-size: 14px") && v62.includes("--music-pro-player-play-icon-size: 18px") && v62.includes("--music-pro-player-volume-icon-size: 16px") && v62.includes("--music-pro-player-icon-stroke: 2.25px"), "full and compact controls should share one explicit icon-size/stroke recipe");
   assert(v62.includes(`.music-pro-now-card-option-b .music-pro-control-button,
-.music-pro-mini-transport .music-pro-icon-button`) && v62.includes("--icon-size: var(--music-pro-player-control-icon-size) !important"), "full-size and compact secondary buttons should use the same Obsidian --icon-size variable");
+.music-pro-mini-transport .music-pro-icon-button`) && v62.includes("--icon-size: var(--music-pro-player-control-icon-size)"), "full-size and compact secondary buttons should use the same Obsidian --icon-size variable");
   assert(v62.includes(`.music-pro-now-card-option-b .music-pro-play-button,
-.music-pro-mini-transport .music-pro-mini-play`) && v62.includes("--icon-size: var(--music-pro-player-play-icon-size) !important"), "full-size and compact play buttons should use the same Obsidian --icon-size variable");
-  assert(v62.includes(".music-pro-now-card-option-b .music-pro-control-button .svg-icon") && v62.includes(".music-pro-mini-actions .music-pro-icon-button .svg-icon") && v62.includes("width: var(--music-pro-player-control-icon-size) !important"), "the rendered .svg-icon boxes should be equal for full and compact secondary controls");
-  assert(v62.includes(".music-pro-now-card-option-b .music-pro-play-button .svg-icon") && v62.includes(".music-pro-mini-transport .music-pro-mini-play .svg-icon") && v62.includes("height: var(--music-pro-player-play-icon-size) !important"), "the rendered .svg-icon boxes should be equal for full and compact play controls");
-  assert(v62.includes(".music-pro-now-card-option-b .music-pro-now-volume-icon .svg-icon") && v62.includes(".music-pro-mini-sliders .music-pro-mini-volume-icon .svg-icon") && v62.includes("stroke-width: var(--music-pro-player-icon-stroke) !important"), "full and compact volume glyphs should share the same size and stroke");
+.music-pro-mini-transport .music-pro-mini-play`) && v62.includes("--icon-size: var(--music-pro-player-play-icon-size)"), "full-size and compact play buttons should use the same Obsidian --icon-size variable");
+  assert(v62.includes(".music-pro-now-card-option-b .music-pro-control-button .svg-icon") && v62.includes(".music-pro-mini-actions .music-pro-icon-button .svg-icon") && v62.includes("width: var(--music-pro-player-control-icon-size)"), "the rendered .svg-icon boxes should be equal for full and compact secondary controls");
+  assert(v62.includes(".music-pro-now-card-option-b .music-pro-play-button .svg-icon") && v62.includes(".music-pro-mini-transport .music-pro-mini-play .svg-icon") && v62.includes("height: var(--music-pro-player-play-icon-size)"), "the rendered .svg-icon boxes should be equal for full and compact play controls");
+  assert(v62.includes(".music-pro-now-card-option-b .music-pro-now-volume-icon .svg-icon") && v62.includes(".music-pro-mini-sliders .music-pro-mini-volume-icon .svg-icon") && v62.includes("stroke-width: var(--music-pro-player-icon-stroke)"), "full and compact volume glyphs should share the same size and stroke");
   assert(v62.includes(".music-pro-now-card-option-b .music-pro-control-button svg *") && v62.includes(".music-pro-mini-transport .music-pro-mini-play svg *"), "nested Lucide path strokes should be normalized in both full and compact players");
 });
 
@@ -1323,11 +1323,11 @@ check("special playlist rows use uniform backgrounds", async () => {
   assert(sidebar.includes('"data-music-pro-category-id": option.value') && sidebar.includes('"data-music-pro-category-kind": isPersonal ? "personal" : "system"') && sidebar.includes('button.toggleClass("is-system", !isPersonal)'), "playlist rail rows should expose category id/kind so special rows can be audited and normalized");
   assert(settingsTab.includes('music-pro-category-toggle-row') && settingsTab.includes('categorySetting.settingEl.setAttr("data-music-pro-category-id", category.id)') && settingsTab.includes('"data-music-pro-category-kind"'), "Settings playlist toggle rows should also expose category id/kind");
   assert(v65.includes(`.music-pro-playlist-category[data-music-pro-category-id="editors-choice"],
-.music-pro-playlist-category[data-music-pro-category-id="recent"]`) && v65.includes("background: var(--music-pro-playlist-category-idle-bg) !important"), "Editor’s Choice and Recent rail rows should use the same idle background as other playlists");
-  assert(v65.includes('.music-pro-playlist-category[data-music-pro-category-id="editors-choice"]:hover') && v65.includes("background: var(--music-pro-playlist-category-hover-bg) !important"), "Editor’s Choice and Recent rail rows should use the same hover background as other playlists");
-  assert(v65.includes('.music-pro-playlist-category[data-music-pro-category-id="editors-choice"].is-active') && v65.includes('.music-pro-playlist-category[data-music-pro-category-id="recent"].is-active') && v65.includes("background: var(--music-pro-playlist-category-active-bg) !important"), "Editor’s Choice and Recent rail rows should use the same active background as other playlists");
+.music-pro-playlist-category[data-music-pro-category-id="recent"]`) && v65.includes("background: var(--music-pro-playlist-category-idle-bg)"), "Editor’s Choice and Recent rail rows should use the same idle background as other playlists");
+  assert(v65.includes('.music-pro-playlist-category[data-music-pro-category-id="editors-choice"]:hover') && v65.includes("background: var(--music-pro-playlist-category-hover-bg)"), "Editor’s Choice and Recent rail rows should use the same hover background as other playlists");
+  assert(v65.includes('.music-pro-playlist-category[data-music-pro-category-id="editors-choice"].is-active') && v65.includes('.music-pro-playlist-category[data-music-pro-category-id="recent"].is-active') && v65.includes("background: var(--music-pro-playlist-category-active-bg)"), "Editor’s Choice and Recent rail rows should use the same active background as other playlists");
   assert(v65.includes(`.music-pro-category-toggle-grid > .setting-item.music-pro-category-toggle-row[data-music-pro-category-id="editors-choice"],
-.music-pro-category-toggle-grid > .setting-item.music-pro-category-toggle-row[data-music-pro-category-id="recent"]`) && v65.includes("background: var(--music-pro-settings-playlist-row-bg) !important"), "Settings rows for Editor’s Choice and Recent should use the same row background as every other playlist toggle");
+.music-pro-category-toggle-grid > .setting-item.music-pro-category-toggle-row[data-music-pro-category-id="recent"]`) && v65.includes("background: var(--music-pro-settings-playlist-row-bg)"), "Settings rows for Editor’s Choice and Recent should use the same row background as every other playlist toggle");
   assert(v65.includes(".music-pro-category-toggle-grid > .setting-item.music-pro-category-toggle-row .music-pro-toggle-button.is-active") && v65.includes("var(--music-pro-accent, var(--interactive-accent)) 18%"), "active On buttons in Settings should also share one background recipe");
 });
 
@@ -1367,9 +1367,9 @@ check("default appearance is fixed accent-synced and adaptive theme is removed",
   assert(v66.includes(`background:
     radial-gradient`) && v66.includes("linear-gradient(180deg, var(--music-pro-background-deep)") && v66.includes("var(--music-pro-background-bottom) 100%"), "default sidebar background should follow the selected accent without blending into the old blue gradient");
   assert(v66.includes(".music-pro-settings.music-pro-fixed-appearance") && v66.includes("linear-gradient(180deg, color-mix(in srgb, var(--music-pro-background-deep) 42%, transparent)"), "settings background should use the same accent-synced glow in fixed mode");
-  assert(v66.includes(".music-pro-sidebar.music-pro-fixed-appearance .music-pro-sidebar-header h2") && v66.includes("color: var(--text-normal) !important"), "Music Pro heading and section text should remain white in default mode");
+  assert(v66.includes(".music-pro-sidebar.music-pro-fixed-appearance .music-pro-sidebar-header h2") && v66.includes("color: var(--text-normal)"), "Music Pro heading and section text should remain white in default mode");
   assert(v66.includes(".music-pro-sidebar.music-pro-fixed-appearance .music-pro-now-card") && v66.includes(".music-pro-settings.music-pro-fixed-appearance .music-pro-settings-section") && v66.includes(`background:
-    linear-gradient`) && v66.includes("var(--music-pro-material) !important"), "default cards/settings surfaces should keep the same dark material background");
+    linear-gradient`) && v66.includes("var(--music-pro-material)"), "default cards/settings surfaces should keep the same dark material background");
   assert(!v66.includes(".music-pro-sidebar.music-pro-adaptive-appearance") && !css.includes("color-scheme: normal"), "adaptive appearance CSS should be removed instead of kept as a theme-dependent mode");
 });
 
@@ -1390,10 +1390,10 @@ check("fixed appearance buttons resist Obsidian default light button styling", a
   assert(marker > css.lastIndexOf("UI audit v78"), "default-theme button override should come after gutter/layout fixes");
   const buttonCss = css.slice(marker);
   assert(buttonCss.includes("Obsidian's default theme paints native <button>") && buttonCss.includes("button.music-pro-control-button") && buttonCss.includes("button.music-pro-icon-button") && buttonCss.includes("button.music-pro-play-button"), "fixed appearance should use scoped button selectors with higher specificity than Obsidian's default button rule");
-  assert(buttonCss.includes("-webkit-appearance: none !important") && buttonCss.includes("appearance: none !important"), "Music Pro buttons should reset native/default theme button appearance");
-  assert(buttonCss.includes("background:") && buttonCss.includes("color-mix(in srgb, var(--background-secondary) 58%, transparent) !important") && buttonCss.includes("border-color: color-mix(in srgb, var(--background-modifier-border) 48%, transparent) !important"), "normal Music Pro icon/control buttons should keep dark material backgrounds under default themes");
-  assert(buttonCss.includes("button.music-pro-loop-toggle.is-active") && buttonCss.includes("button.music-pro-random-toggle.is-active") && buttonCss.includes("var(--music-pro-accent-strong) !important"), "active random/loop controls should keep the accent background after the default button reset");
-  assert(buttonCss.includes("button.music-pro-mini-play") && buttonCss.includes("color: currentColor !important") && buttonCss.includes("stroke: currentColor !important"), "compact and full controls should keep glyph colors bound to the Music Pro button color");
+  assert(buttonCss.includes("-webkit-appearance: none") && buttonCss.includes("appearance: none"), "Music Pro buttons should reset native/default theme button appearance");
+  assert(buttonCss.includes("background:") && buttonCss.includes("color-mix(in srgb, var(--background-secondary) 58%, transparent)") && buttonCss.includes("border-color: color-mix(in srgb, var(--background-modifier-border) 48%, transparent)"), "normal Music Pro icon/control buttons should keep dark material backgrounds under default themes");
+  assert(buttonCss.includes("button.music-pro-loop-toggle.is-active") && buttonCss.includes("button.music-pro-random-toggle.is-active") && buttonCss.includes("var(--music-pro-accent-strong)"), "active random/loop controls should keep the accent background after the default button reset");
+  assert(buttonCss.includes("button.music-pro-mini-play") && buttonCss.includes("color: currentColor") && buttonCss.includes("stroke: currentColor"), "compact and full controls should keep glyph colors bound to the Music Pro button color");
 });
 
 check("fixed Music Pro surfaces resist installed Obsidian theme bleed", async () => {
@@ -1413,13 +1413,13 @@ check("fixed Music Pro surfaces resist installed Obsidian theme bleed", async ()
   assert(marker > css.lastIndexOf("UI audit v80"), "installed-theme hardening should come after compact timing overrides");
   const hardeningCss = css.slice(marker);
   assert(hardeningCss.includes("Minimal, Border, Blue Topaz, ITS, Primary, Prism, Cupertino") && hardeningCss.includes("without reintroducing adaptive theme"), "theme hardening should document the installed Obsidian themes it protects against");
-  assert(hardeningCss.includes(".music-pro-view-container .view-content") && hardeningCss.includes("padding: 0 !important") && hardeningCss.includes("background: transparent !important"), "Music Pro should neutralize theme-provided view padding/background at the view-content boundary");
-  assert(hardeningCss.includes("isolation: isolate") && hardeningCss.includes("font-family: var(--font-interface)") && hardeningCss.includes("text-shadow: none !important"), "fixed surfaces should isolate typography/shadow bleed from themes");
+  assert(hardeningCss.includes(".music-pro-view-container .view-content") && hardeningCss.includes("padding: 0") && hardeningCss.includes("background: transparent"), "Music Pro should neutralize theme-provided view padding/background at the view-content boundary");
+  assert(hardeningCss.includes("isolation: isolate") && hardeningCss.includes("font-family: var(--font-interface)") && hardeningCss.includes("text-shadow: none"), "fixed surfaces should isolate typography/shadow bleed from themes");
   assert(hardeningCss.includes(".music-pro-settings.music-pro-fixed-appearance .setting-item") && hardeningCss.includes(".setting-item-name") && hardeningCss.includes(".setting-item-description"), "Settings rows/names/descriptions should have scoped fixed-mode colors");
   assert(hardeningCss.includes(".music-pro-settings.music-pro-fixed-appearance .setting-item-control button:not(.music-pro-toggle-button):not(.music-pro-accent-swatch)") && hardeningCss.includes("button.music-pro-toggle-button.is-active") && hardeningCss.includes("button.music-pro-accent-swatch.is-active"), "Settings buttons, toggles, and color presets should resist broad theme button styling");
   assert(hardeningCss.includes(".music-pro-quick-picker.music-pro-fixed-appearance button.music-pro-quick-item") && hardeningCss.includes(".music-pro-quick-picker.music-pro-fixed-appearance button.music-pro-chip.is-active") && hardeningCss.includes("var(--music-pro-on-accent"), "Quick Picker rows and active chips should keep Music Pro material/accent styling");
   assert(hardeningCss.includes('.music-pro-settings.music-pro-fixed-appearance .setting-item-control input:not([type="range"]):not([type="color"])') && hardeningCss.includes('.music-pro-settings.music-pro-fixed-appearance .setting-item-control input[type="color"]') && hardeningCss.includes("accent-color: var(--music-pro-accent"), "text inputs, color inputs, and range accents should stay readable across themes");
-  assert(!hardeningCss.includes("filter: none !important"), "theme hardening must not disable compact auto-hide brightness/filter animations");
+  assert(!hardeningCss.includes("filter: none"), "theme hardening must not disable compact auto-hide brightness/filter animations");
 });
 
 check("sidebar fixed background survives view-content theme reset", async () => {
@@ -1429,9 +1429,9 @@ check("sidebar fixed background survives view-content theme reset", async () => 
   assert(restoreMarker > hardeningMarker, "sidebar background restore should come after the v81 view-content reset");
   const hardeningCss = css.slice(hardeningMarker, restoreMarker);
   const restoreCss = css.slice(restoreMarker);
-  assert(hardeningCss.includes(".music-pro-view-container .view-content:not(.music-pro-sidebar)") && hardeningCss.includes("background: transparent !important"), "view-content boundary reset must not target the sidebar contentEl itself");
+  assert(hardeningCss.includes(".music-pro-view-container .view-content:not(.music-pro-sidebar)") && hardeningCss.includes("background: transparent"), "view-content boundary reset must not target the sidebar contentEl itself");
   assert(restoreCss.includes("contentEl is the .view-content itself") && restoreCss.includes(".music-pro-view-container .view-content.music-pro-sidebar.music-pro-fixed-appearance"), "CSS should explicitly cover Obsidian ItemView where contentEl is also view-content");
-  assert(restoreCss.includes("var(--music-pro-background-glow)") && restoreCss.includes("var(--music-pro-background-soft)") && restoreCss.includes("var(--music-pro-background-deep)") && restoreCss.includes("var(--music-pro-background-bottom) 100%) !important"), "sidebar view-content should restore the fixed dark accent-synced background after the theme reset");
+  assert(restoreCss.includes("var(--music-pro-background-glow)") && restoreCss.includes("var(--music-pro-background-soft)") && restoreCss.includes("var(--music-pro-background-deep)") && restoreCss.includes("var(--music-pro-background-bottom) 100%)"), "sidebar view-content should restore the fixed dark accent-synced background after the theme reset");
   assert(restoreCss.includes("background-attachment: local") && restoreCss.includes("overflow: hidden auto") && restoreCss.includes("min-height: 100%"), "restored sidebar background should keep local scrolling and full-height coverage");
 });
 
@@ -1442,11 +1442,11 @@ check("settings rows keep inner gutters under default-like themes", async () => 
   const settingsCss = css.slice(marker);
   assert(settingsCss.includes("Default-style Obsidian themes") && settingsCss.includes("labels and controls never touch the rounded row edge"), "Settings gutter fix should document the default-like theme issue");
   assert(settingsCss.includes(".music-pro-settings.music-pro-fixed-appearance .music-pro-settings-section > .setting-item") && settingsCss.includes(".music-pro-category-toggle-settings > .setting-item") && settingsCss.includes(".music-pro-personal-playlist-settings > .setting-item"), "Settings row gutter rule should cover main, playlist, and personal sections");
-  assert(settingsCss.includes("padding: 14px 18px !important") && settingsCss.includes("border-radius: 16px !important") && settingsCss.includes("gap: 18px"), "Settings rows should have explicit comfortable inner padding, rounded corners, and label/control gap");
-  assert(settingsCss.includes(".music-pro-settings.music-pro-fixed-appearance .setting-item-info") && settingsCss.includes("padding: 0 !important"), "Settings row text column should not inherit theme padding that can fight the row gutter");
-  assert(settingsCss.includes(".music-pro-settings.music-pro-fixed-appearance .setting-item-control") && settingsCss.includes("padding-left: 16px !important") && settingsCss.includes("justify-content: flex-end") && settingsCss.includes("gap: 8px"), "Settings controls should stay inset from the right edge and separated from labels");
-  assert(settingsCss.includes(".music-pro-settings.music-pro-fixed-appearance .music-pro-category-toggle-grid > .setting-item.music-pro-category-toggle-row") && settingsCss.includes("padding: 12px 14px !important"), "playlist visibility grid rows should also keep a smaller but explicit inner gutter");
-  assert(settingsCss.includes("@container (max-width: 560px)") && settingsCss.includes("padding: 12px 14px !important") && settingsCss.includes("padding-left: 8px !important"), "Settings gutters should shrink gracefully in narrow panes");
+  assert(settingsCss.includes("padding: 14px 18px") && settingsCss.includes("border-radius: 16px") && settingsCss.includes("gap: 18px"), "Settings rows should have explicit comfortable inner padding, rounded corners, and label/control gap");
+  assert(settingsCss.includes(".music-pro-settings.music-pro-fixed-appearance .setting-item-info") && settingsCss.includes("padding: 0"), "Settings row text column should not inherit theme padding that can fight the row gutter");
+  assert(settingsCss.includes(".music-pro-settings.music-pro-fixed-appearance .setting-item-control") && settingsCss.includes("padding-left: 16px") && settingsCss.includes("justify-content: flex-end") && settingsCss.includes("gap: 8px"), "Settings controls should stay inset from the right edge and separated from labels");
+  assert(settingsCss.includes(".music-pro-settings.music-pro-fixed-appearance .music-pro-category-toggle-grid > .setting-item.music-pro-category-toggle-row") && settingsCss.includes("padding: 12px 14px"), "playlist visibility grid rows should also keep a smaller but explicit inner gutter");
+  assert(settingsCss.includes("@container (max-width: 560px)") && settingsCss.includes("padding: 12px 14px") && settingsCss.includes("padding-left: 8px"), "Settings gutters should shrink gracefully in narrow panes");
 });
 
 check("personal playlist reorder handles drag immediately and support arrows", async () => {
@@ -1459,7 +1459,7 @@ check("personal playlist reorder handles drag immediately and support arrows", a
   assert(sidebar.includes('role: "button"') && sidebar.includes('tabindex: "0"') && sidebar.includes("ArrowUp") && sidebar.includes("ArrowDown") && sidebar.includes("movePersonalFolderItemWithKeyboard") && sidebar.includes("data-music-pro-folder-item-key") && sidebar.includes("candidate.focus()"), "personal playlist row handles should support keyboard Up/Down reordering and keep focus after each move");
   assert(sidebar.includes("event.dataTransfer.setDragImage(row") && sidebar.includes('effectAllowed = "move"') && sidebar.includes('handle.addEventListener("pointerdown"'), "drag feedback should start from the row and use move semantics");
   assert(sidebar.includes('direction < 0 ? "before" : "after"') && sidebar.includes("this.plugin.reorderPersonalFolderItem"), "keyboard reordering should use the same persisted personal-folder order API as drag/drop");
-  assert(v67.includes("grid-template-columns: 28px 50px minmax(0, 1fr) auto") && v67.includes("touch-action: none") && v67.includes("cursor: grab !important"), "personal playlist handles should have a larger reliable grab target");
+  assert(v67.includes("grid-template-columns: 28px 50px minmax(0, 1fr) auto") && v67.includes("touch-action: none") && v67.includes("cursor: grab"), "personal playlist handles should have a larger reliable grab target");
   assert(v67.includes(".music-pro-item.is-folder-drop-before") && v67.includes("outline: 1.5px solid") && v67.includes("inset 0 4px 0") && v67.includes("inset 0 -4px 0"), "drop targets should show clearer before/after indicators");
 });
 
@@ -1474,7 +1474,7 @@ check("playlist Tracks reorder uses immediate handles and before/after drop indi
   assert(sidebar.includes('role: "button"') && sidebar.includes('tabindex: "0"') && sidebar.includes("movePlaylistTrackWithKeyboard") && sidebar.includes("data-music-pro-sound-id") && sidebar.includes("candidate.focus()"), "track handles should support keyboard Up/Down reordering and keep focus");
   assert(sidebar.includes("getPlaylistTrackDropPlacement") && sidebar.includes("is-track-drop-before") && sidebar.includes("is-track-drop-after") && sidebar.includes("event.dataTransfer.setDragImage(row"), "track drag/drop should use row drag imagery plus before/after target classes");
   assert(main.includes('reorderCurrentPlaylistTrack(sourceSoundId: string, targetSoundId: string, placement: "before" | "after" = "before")') && main.includes('ordered.splice(placement === "after" ? targetIndex + 1 : targetIndex, 0, moved)'), "track order persistence should honor before/after placement instead of only target index");
-  assert(v69.includes(".music-pro-playlist-track.is-track-reorderable") && v69.includes("grid-template-columns: 28px minmax(0, 1fr) auto") && v69.includes("touch-action: none") && v69.includes("cursor: grab !important"), "track rows should get the same larger reliable grab target as personal playlist rows");
+  assert(v69.includes(".music-pro-playlist-track.is-track-reorderable") && v69.includes("grid-template-columns: 28px minmax(0, 1fr) auto") && v69.includes("touch-action: none") && v69.includes("cursor: grab"), "track rows should get the same larger reliable grab target as personal playlist rows");
   assert(v69.includes(".music-pro-playlist-track.is-track-drop-before") && v69.includes("outline: 1.5px solid") && v69.includes("inset 0 4px 0") && v69.includes("inset 0 -4px 0"), "track drop targets should show the same clear bright insertion affordance");
 });
 
@@ -1484,7 +1484,7 @@ check("compact Quick Pick tracks are frameless and text centered", async () => {
   const marker = css.lastIndexOf("UI audit v70");
   assert(marker > css.lastIndexOf("UI audit v69"), "compact Quick Pick visual cleanup should come after Tracks reorder handle rules");
   const v70 = css.slice(marker);
-  assert(v70.includes(".music-pro-mini-dock .music-pro-mini-track-picker") && v70.includes("background: transparent !important") && v70.includes("box-shadow: none !important") && v70.includes("border-width: 0 !important"), "compact Quick Pick should lose only its heavy inner picker frame");
+  assert(v70.includes(".music-pro-mini-dock .music-pro-mini-track-picker") && v70.includes("background: transparent") && v70.includes("box-shadow: none") && v70.includes("border-width: 0"), "compact Quick Pick should lose only its heavy inner picker frame");
   assert(!v70.includes(".music-pro-sidebar .music-pro-playlist-tracks") && !v70.includes(".music-pro-sidebar.music-pro-fixed-appearance .music-pro-playlist-tracks"), "full-size sidebar Tracks panel should keep the old framed card styling");
   assert(v70.includes(".music-pro-mini-dock .music-pro-mini-track-row") && v70.includes("min-height: 42px") && v70.includes("padding: 6px 9px 7px"), "compact Quick Pick rows should keep pill boxes with more breathing room");
   assert(v70.includes(".music-pro-mini-dock .music-pro-mini-track-body") && v70.includes("transform: translateY(-1px)") && v70.includes("line-height: 1.14"), "compact Quick Pick track metadata should be optically centered inside each row");
@@ -1556,7 +1556,7 @@ check("single-track Tracks panel notice is centered and hierarchical", async () 
   assert(marker > css.lastIndexOf("UI audit v70"), "single-track Tracks-panel notice should come after compact Quick Pick cleanup");
   const v71 = css.slice(marker);
   assert(sidebar.includes("music-pro-single-track-callout") && sidebar.includes("music-pro-single-track-title") && sidebar.includes("music-pro-single-track-desc"), "single-track panel should use title/body hierarchy instead of one small line");
-  assert(v71.includes(".music-pro-playlist-tracks .music-pro-single-track-callout") && v71.includes("flex: 1 1 auto !important") && v71.includes("align-items: center") && v71.includes("justify-content: center") && v71.includes("text-align: center"), "single-track callout should be centered within the Tracks panel");
+  assert(v71.includes(".music-pro-playlist-tracks .music-pro-single-track-callout") && v71.includes("flex: 1 1 auto") && v71.includes("align-items: center") && v71.includes("justify-content: center") && v71.includes("text-align: center"), "single-track callout should be centered within the Tracks panel");
   assert(v71.includes(".music-pro-single-track-title") && v71.includes("font-size: clamp(22px, 3.2vw, 30px)") && v71.includes("font-weight: 880"), "single-track title should be large and clear");
   assert(v71.includes(".music-pro-single-track-desc") && v71.includes("max-width: 380px") && v71.includes("line-height: 1.45"), "single-track supporting copy should be readable and constrained");
 });
@@ -1568,8 +1568,8 @@ check("single-track empty-state stack is centered as a whole", async () => {
   assert(marker > css.lastIndexOf("UI audit v71"), "single-track stack centering should override the original single-track notice rules");
   const v72 = css.slice(marker);
   assert(v72.includes("center the whole single-track message group, not just the icon"), "single-track centering should document the icon-vs-stack issue");
-  assert(v72.includes("padding: 0 22px clamp(38px, 6vh, 58px) !important") && v72.includes("justify-content: center") && v72.includes("gap: 14px"), "single-track callout should bias the centered stack upward so icon, title, and body center together");
-  assert(v72.includes("@container (max-width: 390px)") && v72.includes("padding: 0 16px 36px !important"), "small panels should keep the whole single-track stack centered without crowding");
+  assert(v72.includes("padding: 0 22px clamp(38px, 6vh, 58px)") && v72.includes("justify-content: center") && v72.includes("gap: 14px"), "single-track callout should bias the centered stack upward so icon, title, and body center together");
+  assert(v72.includes("@container (max-width: 390px)") && v72.includes("padding: 0 16px 36px"), "small panels should keep the whole single-track stack centered without crowding");
 });
 
 
@@ -1579,8 +1579,8 @@ check("full-size play button icon color is stable on click", async () => {
   assert(marker > css.lastIndexOf("UI audit v72"), "full-size play-button flicker fix should override earlier empty-state rules");
   const v73 = css.slice(marker);
   assert(v73.includes("compact-mode white") && v73.includes(".music-pro-now-card-option-b .music-pro-play-button:active") && v73.includes(".music-pro-now-card-option-b .music-pro-play-button:focus-visible"), "full-size play button should pin compact-style white across active/focus states");
-  assert(v73.includes("color: #ffffff !important") && v73.includes("transition: transform 140ms ease, background 140ms ease, box-shadow 140ms ease !important") && !v73.includes("color: var(--music-pro-on-accent) !important"), "play button should stay white and should not animate icon color during play/pause rerenders");
-  assert(v73.includes("stroke: currentColor !important") && v73.includes("transition: none !important") && v73.includes('svg [fill]:not([fill="none"])'), "play/pause SVG descendants should inherit the pinned white color without Obsidian active-state recoloring");
+  assert(v73.includes("color: #ffffff") && v73.includes("transition: transform 140ms ease, background 140ms ease, box-shadow 140ms ease") && !v73.includes("color: var(--music-pro-on-accent)"), "play button should stay white and should not animate icon color during play/pause rerenders");
+  assert(v73.includes("stroke: currentColor") && v73.includes("transition: none") && v73.includes('svg [fill]:not([fill="none"])'), "play/pause SVG descendants should inherit the pinned white color without Obsidian active-state recoloring");
 });
 
 check("Obsidian command palette stays minimal and user-facing", async () => {
@@ -1616,7 +1616,7 @@ check("Obsidian command palette stays minimal and user-facing", async () => {
 });
 
 check("short description is consistent across release-facing sources", async () => {
-  const expected = "A plug-and-play music app for deep work inside Obsidian.";
+  const expected = "A plug-and-play music app for deep work.";
   const manifest = JSON.parse(await readFile(new URL("../manifest.json", import.meta.url), "utf8"));
   const packageJson = JSON.parse(await readFile(new URL("../package.json", import.meta.url), "utf8"));
   const readme = await readFile(new URL("../README.md", import.meta.url), "utf8");
@@ -1625,6 +1625,22 @@ check("short description is consistent across release-facing sources", async () 
   assert(packageJson.description === expected, "package.json description should use the approved short description");
   assert(readme.includes(`\n${expected}\n`), "README intro should use the approved short description");
   assert((await readFile(new URL("../src/ui/SettingsTab.ts", import.meta.url), "utf8")).includes(expected), "Settings hero should use the approved short description");
+});
+
+check("Obsidian scorecard risks stay fixed", async () => {
+  const manifest = JSON.parse(await readFile(new URL("../manifest.json", import.meta.url), "utf8"));
+  const player = await readFile(new URL("../src/player/SoundCloudPlayer.ts", import.meta.url), "utf8");
+  const main = await readFile(new URL("../src/main.ts", import.meta.url), "utf8");
+  const settings = await readFile(new URL("../src/ui/SettingsTab.ts", import.meta.url), "utf8");
+  const sourceText = [player, main, settings].join("\n");
+  const css = await readFile(new URL("../styles.css", import.meta.url), "utf8");
+
+  assert(!/\bObsidian\b/i.test(manifest.description), "manifest.description should not repeat the word Obsidian for community scorecard");
+  assert(!/createElement\((["'])script\1\)/.test(sourceText), "plugin source should not dynamically inject external script elements");
+  assert(!/w\.soundcloud\.com\/player\/api\.js/.test(sourceText), "SoundCloud widget bridge should not load the external API script at runtime");
+  assert(!css.includes("!important"), "styles should not use scorecard-warning CSS patterns: !important");
+  assert(!/scrollbar-width\s*:/.test(css), "styles should avoid CSS scrollbar-width warnings; Chromium scrollbar hiding is handled with scoped ::-webkit-scrollbar rules");
+  assert(!css.includes(":has") && !css.includes("clip-path") && !css.includes("text-indent") && !css.includes("column-gap"), "styles should avoid scorecard/perf-warning CSS patterns");
 });
 
 check("four-phase SoundCloud mining hardening is wired", async () => {

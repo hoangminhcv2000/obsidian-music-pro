@@ -1,9 +1,9 @@
 {
   "id": "music-pro",
   "name": "Music Pro",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "minAppVersion": "1.5.0",
-  "description": "A plug-and-play music app for deep work inside Obsidian.",
+  "description": "A plug-and-play music app for deep work.",
   "author": "Minh Hoang",
   "isDesktopOnly": true,
   "fundingUrl": "https://ko-fi.com/minhhoang2000"

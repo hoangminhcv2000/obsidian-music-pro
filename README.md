@@ -1,6 +1,6 @@
 # Music Pro
 
-A plug-and-play music app for deep work inside Obsidian.
+A plug-and-play music app for deep work.
 
 Music Pro gives you focused playlists, a clean player, and a compact mini mode without complicated setup. Install it, enable it, and press play.
 
