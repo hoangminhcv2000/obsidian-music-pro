@@ -1824,7 +1824,7 @@ check("README feature images are visual-first", async () => {
     "readme-personal-playlists.png",
     "readme-auto-pause.png",
     "readme-player-sizes.png",
-    "readme-auto-hide.png"
+    "readme-auto-hide.affinity-editable.svg"
   ];
   assert(readmeFeatureAssets.every((asset) => readme.includes(asset)), "README should use the composite visual-first feature assets");
   assert(readmeFeatureAssets.every((asset) => assetFiles.includes(asset)), "README composite feature assets should exist in assets/");
