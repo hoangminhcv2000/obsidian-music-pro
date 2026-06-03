@@ -250,10 +250,10 @@
 .music-pro-search-input {
   flex: 1;
   height: 100%;
-  border: 0;
-  background: transparent;
-  box-shadow: none;
-  padding: 0;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
 }
 
 .music-pro-categories {
@@ -412,7 +412,7 @@
   grid-template-columns: 46px minmax(0, 1fr) auto;
   grid-template-rows: auto auto;
   align-items: center;
-  gap: 0 12px;
+  column-gap: 12px;
   padding: 10px 12px;
   border-radius: 22px;
   border: 1px solid color-mix(in srgb, var(--background-modifier-border) 84%, transparent);
@@ -505,7 +505,7 @@
   .music-pro-small-play,
   .music-pro-progress-fill,
   .music-pro-mini-progress-fill {
-    transition: none;
+    transition: none !important;
   }
 }
 
@@ -611,6 +611,7 @@
 }
 
 .music-pro-categories {
+  scrollbar-width: thin;
 }
 
 .music-pro-item-actions {
@@ -3171,7 +3172,7 @@
     "progress progress progress progress"
     "volume volume volume volume";
   align-items: center;
-  gap: 0 11px;
+  column-gap: 11px;
   row-gap: 8px;
   margin-left: 30px;
   padding: 11px 12px 10px;
@@ -3368,7 +3369,7 @@
       "art text actions"
       "progress progress progress"
       "volume volume volume";
-    gap: 0 10px;
+    column-gap: 10px;
   }
 
   .music-pro-mini-art {
@@ -5368,7 +5369,7 @@
 }
 
 .music-pro-now-card-option-b .music-pro-now-topline {
-  gap: 0 16px;
+  column-gap: 16px;
 }
 
 .music-pro-now-card-option-b .music-pro-controls,
@@ -5473,6 +5474,7 @@
 
 .music-pro-playlist-categories,
 .music-pro-categories {
+  scrollbar-width: none;
   -ms-overflow-style: none;
 }
 
@@ -5596,7 +5598,7 @@
 @container (min-width: 720px) {
   .music-pro-now-card-option-b .music-pro-now-bottomline {
     grid-template-columns: minmax(260px, 1fr) minmax(184px, 226px);
-    gap: 0 20px;
+    column-gap: 20px;
     row-gap: 0;
     overflow: hidden;
   }
@@ -5733,7 +5735,7 @@
 .music-pro-now-card-option-b .music-pro-now-bottomline {
   display: grid;
   grid-template-columns: minmax(148px, 1fr) minmax(128px, 0.42fr);
-  gap: 0 14px;
+  column-gap: 14px;
   row-gap: 8px;
   align-items: center;
   overflow: visible;
@@ -5859,7 +5861,7 @@
     "handle sliders transport"
     "handle meta transport";
   align-items: start;
-  gap: 0 14px;
+  column-gap: 14px;
   row-gap: 10px;
   min-height: 132px;
   margin-left: 0;
@@ -6191,7 +6193,7 @@
     "handle meta transport"
     "handle sliders sliders";
   align-items: center;
-  gap: 0 14px;
+  column-gap: 14px;
   row-gap: 11px;
   min-height: 148px;
   padding: 12px 16px 14px 10px;
@@ -6354,7 +6356,7 @@
 /* UI audit v24 — Playlist rail naming/layout: keep action buttons clear of search. */
 .music-pro-playlist-browser {
   grid-template-columns: minmax(236px, 0.40fr) minmax(0, 1fr);
-  gap: 0 22px;
+  column-gap: 22px;
 }
 
 .music-pro-playlist-content,
@@ -6385,7 +6387,7 @@
 @container (max-width: 640px) {
   .music-pro-playlist-browser {
     grid-template-columns: minmax(176px, 0.45fr) minmax(0, 1fr);
-    gap: 0 18px;
+    column-gap: 18px;
   }
 
   .music-pro-playlist-rail-head {
@@ -6412,7 +6414,7 @@
   .music-pro-playlist-rail-head {
     grid-template-columns: auto auto;
     justify-content: start;
-    gap: 0 10px;
+    column-gap: 10px;
     row-gap: 0;
   }
 
@@ -6690,7 +6692,7 @@
     "handle meta transport"
     "handle sliders sliders";
   align-items: center;
-  gap: 0 10px;
+  column-gap: 10px;
   row-gap: 8px;
   margin: 0;
   padding: 10px 12px 11px 8px;
@@ -7258,6 +7260,7 @@
   max-height: 138px;
   overflow-y: auto;
   padding-right: 2px;
+  scrollbar-width: thin;
 }
 
 .music-pro-mini-track-row {
@@ -7457,6 +7460,7 @@
 .music-pro-playlist-list,
 .music-pro-playlist-tracks .music-pro-playlist-list,
 .music-pro-mini-track-picker-list {
+  scrollbar-width: none;
   -ms-overflow-style: none;
 }
 
@@ -7496,7 +7500,7 @@
   .music-pro-playlist-rail-head {
     grid-template-columns: auto auto;
     justify-content: start;
-    gap: 0 10px;
+    column-gap: 10px;
     row-gap: 0;
   }
 
@@ -7615,7 +7619,7 @@
 .music-pro-mini-dock.is-autohide:not(:hover):not(:focus-within) .music-pro-mini-panel {
   min-height: 96px;
   grid-template-columns: 14px minmax(0, 1fr) max-content;
-  gap: 0 8px;
+  column-gap: 8px;
   row-gap: 5px;
   padding: 7px 9px 8px 6px;
   border-radius: 20px;
@@ -7919,10 +7923,12 @@
 .music-pro-mini-track-picker-list {
   max-height: 133px;
   padding-right: 0;
+  scrollbar-width: none;
   -ms-overflow-style: none;
 }
 
 .music-pro-quick-list {
+  scrollbar-width: none;
   -ms-overflow-style: none;
 }
 
@@ -8048,9 +8054,9 @@
 .music-pro-now-card-option-b .music-pro-volume,
 .music-pro-mini-sliders .music-pro-seek-slider,
 .music-pro-mini-sliders .music-pro-volume {
-  border: 0;
-  outline: 0;
-  box-shadow: none;
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
   background: transparent;
 }
 
@@ -8062,27 +8068,27 @@
 .music-pro-mini-sliders .music-pro-seek-slider:focus-visible,
 .music-pro-mini-sliders .music-pro-volume:focus,
 .music-pro-mini-sliders .music-pro-volume:focus-visible {
-  outline: 0;
-  box-shadow: none;
+  outline: 0 !important;
+  box-shadow: none !important;
 }
 
 .music-pro-now-card-option-b .music-pro-seek-slider::-webkit-slider-runnable-track,
 .music-pro-now-card-option-b .music-pro-volume::-webkit-slider-runnable-track,
 .music-pro-mini-sliders .music-pro-seek-slider::-webkit-slider-runnable-track,
 .music-pro-mini-sliders .music-pro-volume::-webkit-slider-runnable-track {
-  border: 0;
-  outline: 0;
-  box-shadow: none;
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
 }
 
 .music-pro-now-card-option-b .music-pro-seek-slider::-webkit-slider-thumb,
 .music-pro-now-card-option-b .music-pro-volume::-webkit-slider-thumb,
 .music-pro-mini-sliders .music-pro-seek-slider::-webkit-slider-thumb,
 .music-pro-mini-sliders .music-pro-volume::-webkit-slider-thumb {
-  border: 0;
-  outline: 0;
+  border: 0 !important;
+  outline: 0 !important;
   background: var(--music-pro-range-thumb);
-  box-shadow: var(--music-pro-range-thumb-shadow);
+  box-shadow: var(--music-pro-range-thumb-shadow) !important;
 }
 
 .music-pro-now-card-option-b .music-pro-seek-slider::-moz-range-track,
@@ -8093,19 +8099,19 @@
 .music-pro-mini-sliders .music-pro-volume::-moz-range-track,
 .music-pro-mini-sliders .music-pro-seek-slider::-moz-range-progress,
 .music-pro-mini-sliders .music-pro-volume::-moz-range-progress {
-  border: 0;
-  outline: 0;
-  box-shadow: none;
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
 }
 
 .music-pro-now-card-option-b .music-pro-seek-slider::-moz-range-thumb,
 .music-pro-now-card-option-b .music-pro-volume::-moz-range-thumb,
 .music-pro-mini-sliders .music-pro-seek-slider::-moz-range-thumb,
 .music-pro-mini-sliders .music-pro-volume::-moz-range-thumb {
-  border: 0;
-  outline: 0;
+  border: 0 !important;
+  outline: 0 !important;
   background: var(--music-pro-range-thumb);
-  box-shadow: var(--music-pro-range-thumb-shadow);
+  box-shadow: var(--music-pro-range-thumb-shadow) !important;
 }
 
 /* UI audit v45 — narrow sidebar stacks timeline and volume with aligned rails.
@@ -8207,9 +8213,9 @@
 
 .music-pro-mini-sliders .music-pro-seek-slider::-webkit-slider-runnable-track,
 .music-pro-mini-sliders .music-pro-volume::-webkit-slider-runnable-track {
-  height: var(--music-pro-mini-range-track-height);
-  min-height: var(--music-pro-mini-range-track-height);
-  max-height: var(--music-pro-mini-range-track-height);
+  height: var(--music-pro-mini-range-track-height) !important;
+  min-height: var(--music-pro-mini-range-track-height) !important;
+  max-height: var(--music-pro-mini-range-track-height) !important;
   border-radius: 999px;
 }
 
@@ -8217,9 +8223,9 @@
 .music-pro-mini-sliders .music-pro-volume::-moz-range-track,
 .music-pro-mini-sliders .music-pro-seek-slider::-moz-range-progress,
 .music-pro-mini-sliders .music-pro-volume::-moz-range-progress {
-  height: var(--music-pro-mini-range-track-height);
-  min-height: var(--music-pro-mini-range-track-height);
-  max-height: var(--music-pro-mini-range-track-height);
+  height: var(--music-pro-mini-range-track-height) !important;
+  min-height: var(--music-pro-mini-range-track-height) !important;
+  max-height: var(--music-pro-mini-range-track-height) !important;
   border-radius: 999px;
 }
 
@@ -8351,9 +8357,9 @@
 
 .music-pro-mini-sliders .music-pro-seek-slider::-webkit-slider-runnable-track,
 .music-pro-mini-sliders .music-pro-volume::-webkit-slider-runnable-track {
-  height: var(--music-pro-mini-range-track-height);
-  min-height: var(--music-pro-mini-range-track-height);
-  max-height: var(--music-pro-mini-range-track-height);
+  height: var(--music-pro-mini-range-track-height) !important;
+  min-height: var(--music-pro-mini-range-track-height) !important;
+  max-height: var(--music-pro-mini-range-track-height) !important;
   border-radius: 999px;
 }
 
@@ -8361,9 +8367,9 @@
 .music-pro-mini-sliders .music-pro-volume::-moz-range-track,
 .music-pro-mini-sliders .music-pro-seek-slider::-moz-range-progress,
 .music-pro-mini-sliders .music-pro-volume::-moz-range-progress {
-  height: var(--music-pro-mini-range-track-height);
-  min-height: var(--music-pro-mini-range-track-height);
-  max-height: var(--music-pro-mini-range-track-height);
+  height: var(--music-pro-mini-range-track-height) !important;
+  min-height: var(--music-pro-mini-range-track-height) !important;
+  max-height: var(--music-pro-mini-range-track-height) !important;
   border-radius: 999px;
 }
 
@@ -8420,7 +8426,7 @@
 .music-pro-now-card-option-b .music-pro-now-bottomline {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(112px, 0.42fr);
-  gap: 0 9px;
+  column-gap: 9px;
   row-gap: 4px;
   align-items: center;
   padding-right: 0;
@@ -8525,7 +8531,7 @@
 .music-pro-now-card-option-b .music-pro-now-bottomline {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(112px, 0.42fr);
-  gap: 0 9px;
+  column-gap: 9px;
   row-gap: 4px;
   align-items: center;
   padding-right: 0;
@@ -8666,6 +8672,8 @@
   margin: -1px;
   padding: 0;
   overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
   white-space: nowrap;
   border: 0;
 }
@@ -8701,13 +8709,13 @@
 .music-pro-now-card-option-b .music-pro-volume,
 .music-pro-mini-sliders .music-pro-seek-slider,
 .music-pro-mini-sliders .music-pro-volume {
-  -webkit-appearance: none;
-  appearance: none;
-  height: var(--music-pro-player-range-hit-height);
-  min-height: var(--music-pro-player-range-hit-height);
-  max-height: var(--music-pro-player-range-hit-height);
-  padding: 0;
-  line-height: normal;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  height: var(--music-pro-player-range-hit-height) !important;
+  min-height: var(--music-pro-player-range-hit-height) !important;
+  max-height: var(--music-pro-player-range-hit-height) !important;
+  padding: 0 !important;
+  line-height: normal !important;
   overflow: visible;
   vertical-align: middle;
 }
@@ -8716,26 +8724,26 @@
 .music-pro-now-card-option-b .music-pro-volume::-webkit-slider-runnable-track,
 .music-pro-mini-sliders .music-pro-seek-slider::-webkit-slider-runnable-track,
 .music-pro-mini-sliders .music-pro-volume::-webkit-slider-runnable-track {
-  height: var(--music-pro-player-range-track-height);
-  min-height: var(--music-pro-player-range-track-height);
-  max-height: var(--music-pro-player-range-track-height);
-  border-radius: 999px;
+  height: var(--music-pro-player-range-track-height) !important;
+  min-height: var(--music-pro-player-range-track-height) !important;
+  max-height: var(--music-pro-player-range-track-height) !important;
+  border-radius: 999px !important;
 }
 
 .music-pro-now-card-option-b .music-pro-seek-slider::-webkit-slider-thumb,
 .music-pro-now-card-option-b .music-pro-volume::-webkit-slider-thumb,
 .music-pro-mini-sliders .music-pro-seek-slider::-webkit-slider-thumb,
 .music-pro-mini-sliders .music-pro-volume::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: var(--music-pro-player-range-thumb-size);
-  min-width: var(--music-pro-player-range-thumb-size);
-  height: var(--music-pro-player-range-thumb-size);
-  min-height: var(--music-pro-player-range-thumb-size);
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  width: var(--music-pro-player-range-thumb-size) !important;
+  min-width: var(--music-pro-player-range-thumb-size) !important;
+  height: var(--music-pro-player-range-thumb-size) !important;
+  min-height: var(--music-pro-player-range-thumb-size) !important;
   aspect-ratio: 1 / 1;
-  margin-top: calc((var(--music-pro-player-range-track-height) - var(--music-pro-player-range-thumb-size)) / 2);
-  border-radius: 50%;
-  box-sizing: border-box;
+  margin-top: calc((var(--music-pro-player-range-track-height) - var(--music-pro-player-range-thumb-size)) / 2) !important;
+  border-radius: 50% !important;
+  box-sizing: border-box !important;
 }
 
 .music-pro-now-card-option-b .music-pro-seek-slider::-moz-range-track,
@@ -8746,22 +8754,22 @@
 .music-pro-mini-sliders .music-pro-volume::-moz-range-track,
 .music-pro-mini-sliders .music-pro-seek-slider::-moz-range-progress,
 .music-pro-mini-sliders .music-pro-volume::-moz-range-progress {
-  height: var(--music-pro-player-range-track-height);
-  min-height: var(--music-pro-player-range-track-height);
-  max-height: var(--music-pro-player-range-track-height);
-  border-radius: 999px;
+  height: var(--music-pro-player-range-track-height) !important;
+  min-height: var(--music-pro-player-range-track-height) !important;
+  max-height: var(--music-pro-player-range-track-height) !important;
+  border-radius: 999px !important;
 }
 
 .music-pro-now-card-option-b .music-pro-seek-slider::-moz-range-thumb,
 .music-pro-now-card-option-b .music-pro-volume::-moz-range-thumb,
 .music-pro-mini-sliders .music-pro-seek-slider::-moz-range-thumb,
 .music-pro-mini-sliders .music-pro-volume::-moz-range-thumb {
-  width: var(--music-pro-player-range-thumb-size);
-  min-width: var(--music-pro-player-range-thumb-size);
-  height: var(--music-pro-player-range-thumb-size);
-  min-height: var(--music-pro-player-range-thumb-size);
-  border-radius: 50%;
-  box-sizing: border-box;
+  width: var(--music-pro-player-range-thumb-size) !important;
+  min-width: var(--music-pro-player-range-thumb-size) !important;
+  height: var(--music-pro-player-range-thumb-size) !important;
+  min-height: var(--music-pro-player-range-thumb-size) !important;
+  border-radius: 50% !important;
+  box-sizing: border-box !important;
 }
 
 /* UI audit v54 — force real Obsidian/Lucide compact button glyph sizing.
@@ -8785,46 +8793,46 @@
 
 .music-pro-mini-transport .music-pro-icon-button,
 .music-pro-mini-actions .music-pro-icon-button {
-  --icon-size: var(--music-pro-mini-secondary-icon-size);
+  --icon-size: var(--music-pro-mini-secondary-icon-size) !important;
 }
 
 .music-pro-mini-transport .music-pro-mini-play {
-  --icon-size: var(--music-pro-mini-play-icon-size);
+  --icon-size: var(--music-pro-mini-play-icon-size) !important;
 }
 
 .music-pro-mini-sliders .music-pro-mini-volume-icon {
-  --icon-size: var(--music-pro-mini-volume-icon-size);
+  --icon-size: var(--music-pro-mini-volume-icon-size) !important;
 }
 
 .music-pro-mini-transport .music-pro-icon-button .svg-icon,
 .music-pro-mini-actions .music-pro-icon-button .svg-icon,
 .music-pro-mini-transport .music-pro-icon-button svg,
 .music-pro-mini-actions .music-pro-icon-button svg {
-  width: var(--music-pro-mini-secondary-icon-size);
-  min-width: var(--music-pro-mini-secondary-icon-size);
-  height: var(--music-pro-mini-secondary-icon-size);
-  min-height: var(--music-pro-mini-secondary-icon-size);
-  stroke-width: 3.25px;
+  width: var(--music-pro-mini-secondary-icon-size) !important;
+  min-width: var(--music-pro-mini-secondary-icon-size) !important;
+  height: var(--music-pro-mini-secondary-icon-size) !important;
+  min-height: var(--music-pro-mini-secondary-icon-size) !important;
+  stroke-width: 3.25px !important;
   vector-effect: non-scaling-stroke;
 }
 
 .music-pro-mini-transport .music-pro-mini-play .svg-icon,
 .music-pro-mini-transport .music-pro-mini-play svg {
-  width: var(--music-pro-mini-play-icon-size);
-  min-width: var(--music-pro-mini-play-icon-size);
-  height: var(--music-pro-mini-play-icon-size);
-  min-height: var(--music-pro-mini-play-icon-size);
-  stroke-width: 3.35px;
+  width: var(--music-pro-mini-play-icon-size) !important;
+  min-width: var(--music-pro-mini-play-icon-size) !important;
+  height: var(--music-pro-mini-play-icon-size) !important;
+  min-height: var(--music-pro-mini-play-icon-size) !important;
+  stroke-width: 3.35px !important;
   vector-effect: non-scaling-stroke;
 }
 
 .music-pro-mini-sliders .music-pro-mini-volume-icon .svg-icon,
 .music-pro-mini-sliders .music-pro-mini-volume-icon svg {
-  width: var(--music-pro-mini-volume-icon-size);
-  min-width: var(--music-pro-mini-volume-icon-size);
-  height: var(--music-pro-mini-volume-icon-size);
-  min-height: var(--music-pro-mini-volume-icon-size);
-  stroke-width: 3.1px;
+  width: var(--music-pro-mini-volume-icon-size) !important;
+  min-width: var(--music-pro-mini-volume-icon-size) !important;
+  height: var(--music-pro-mini-volume-icon-size) !important;
+  min-height: var(--music-pro-mini-volume-icon-size) !important;
+  stroke-width: 3.1px !important;
   vector-effect: non-scaling-stroke;
 }
 
@@ -8942,16 +8950,16 @@
 
 .music-pro-mini-transport .music-pro-icon-button,
 .music-pro-mini-actions .music-pro-icon-button {
-  --icon-size: var(--music-pro-mini-secondary-icon-size);
+  --icon-size: var(--music-pro-mini-secondary-icon-size) !important;
   color: color-mix(in srgb, var(--text-muted) 86%, var(--text-normal) 14%);
 }
 
 .music-pro-mini-transport .music-pro-mini-play {
-  --icon-size: var(--music-pro-mini-play-icon-size);
+  --icon-size: var(--music-pro-mini-play-icon-size) !important;
 }
 
 .music-pro-mini-sliders .music-pro-mini-volume-icon {
-  --icon-size: var(--music-pro-mini-volume-icon-size);
+  --icon-size: var(--music-pro-mini-volume-icon-size) !important;
   color: color-mix(in srgb, var(--text-muted) 86%, var(--text-normal) 14%);
 }
 
@@ -8959,39 +8967,39 @@
 .music-pro-mini-actions .music-pro-icon-button .svg-icon,
 .music-pro-mini-transport .music-pro-icon-button svg,
 .music-pro-mini-actions .music-pro-icon-button svg {
-  width: var(--music-pro-mini-secondary-icon-size);
-  min-width: var(--music-pro-mini-secondary-icon-size);
-  height: var(--music-pro-mini-secondary-icon-size);
-  min-height: var(--music-pro-mini-secondary-icon-size);
-  stroke-width: var(--music-pro-mini-icon-stroke);
+  width: var(--music-pro-mini-secondary-icon-size) !important;
+  min-width: var(--music-pro-mini-secondary-icon-size) !important;
+  height: var(--music-pro-mini-secondary-icon-size) !important;
+  min-height: var(--music-pro-mini-secondary-icon-size) !important;
+  stroke-width: var(--music-pro-mini-icon-stroke) !important;
 }
 
 .music-pro-mini-transport .music-pro-mini-play .svg-icon,
 .music-pro-mini-transport .music-pro-mini-play svg {
-  width: var(--music-pro-mini-play-icon-size);
-  min-width: var(--music-pro-mini-play-icon-size);
-  height: var(--music-pro-mini-play-icon-size);
-  min-height: var(--music-pro-mini-play-icon-size);
-  stroke-width: var(--music-pro-mini-play-icon-stroke);
+  width: var(--music-pro-mini-play-icon-size) !important;
+  min-width: var(--music-pro-mini-play-icon-size) !important;
+  height: var(--music-pro-mini-play-icon-size) !important;
+  min-height: var(--music-pro-mini-play-icon-size) !important;
+  stroke-width: var(--music-pro-mini-play-icon-stroke) !important;
 }
 
 .music-pro-mini-sliders .music-pro-mini-volume-icon .svg-icon,
 .music-pro-mini-sliders .music-pro-mini-volume-icon svg {
-  width: var(--music-pro-mini-volume-icon-size);
-  min-width: var(--music-pro-mini-volume-icon-size);
-  height: var(--music-pro-mini-volume-icon-size);
-  min-height: var(--music-pro-mini-volume-icon-size);
-  stroke-width: var(--music-pro-mini-icon-stroke);
+  width: var(--music-pro-mini-volume-icon-size) !important;
+  min-width: var(--music-pro-mini-volume-icon-size) !important;
+  height: var(--music-pro-mini-volume-icon-size) !important;
+  min-height: var(--music-pro-mini-volume-icon-size) !important;
+  stroke-width: var(--music-pro-mini-icon-stroke) !important;
 }
 
 .music-pro-mini-transport .music-pro-icon-button svg *,
 .music-pro-mini-actions .music-pro-icon-button svg *,
 .music-pro-mini-sliders .music-pro-mini-volume-icon svg * {
-  stroke-width: var(--music-pro-mini-icon-stroke);
+  stroke-width: var(--music-pro-mini-icon-stroke) !important;
 }
 
 .music-pro-mini-transport .music-pro-mini-play svg * {
-  stroke-width: var(--music-pro-mini-play-icon-stroke);
+  stroke-width: var(--music-pro-mini-play-icon-stroke) !important;
 }
 
 /* UI audit v58 — lower full and compact slider handles for visual balance.
@@ -9006,7 +9014,7 @@
 .music-pro-now-card-option-b .music-pro-volume::-webkit-slider-thumb,
 .music-pro-mini-sliders .music-pro-seek-slider::-webkit-slider-thumb,
 .music-pro-mini-sliders .music-pro-volume::-webkit-slider-thumb {
-  margin-top: calc(((var(--music-pro-player-range-track-height) - var(--music-pro-player-range-thumb-size)) / 2) + var(--music-pro-player-range-thumb-y-offset));
+  margin-top: calc(((var(--music-pro-player-range-track-height) - var(--music-pro-player-range-thumb-size)) / 2) + var(--music-pro-player-range-thumb-y-offset)) !important;
 }
 
 .music-pro-now-card-option-b .music-pro-seek-slider::-moz-range-thumb,
@@ -9022,7 +9030,7 @@
 @container (max-width: 390px) {
   .music-pro-library-panel .music-pro-item {
     grid-template-columns: 44px minmax(0, 1fr) max-content;
-    gap: 0 8px;
+    column-gap: 8px;
     align-items: center;
     min-height: 62px;
     padding: 7px 8px;
@@ -9062,7 +9070,7 @@
 @container (max-width: 330px) {
   .music-pro-library-panel .music-pro-item {
     grid-template-columns: 40px minmax(0, 1fr) max-content;
-    gap: 0 7px;
+    column-gap: 7px;
   }
 
   .music-pro-library-panel .music-pro-item-art {
@@ -9222,7 +9230,7 @@
    keep the clicked playlist anchored until the lock expires or the user scrolls. */
 .music-pro-view-container,
 .music-pro-view-container * {
-  scroll-behavior: auto;
+  scroll-behavior: auto !important;
 }
 
 /* UI audit v61 — Recent current card category chips should never look clipped.
@@ -9271,17 +9279,17 @@
 .music-pro-now-card-option-b .music-pro-control-button,
 .music-pro-mini-transport .music-pro-icon-button,
 .music-pro-mini-actions .music-pro-icon-button {
-  --icon-size: var(--music-pro-player-control-icon-size);
+  --icon-size: var(--music-pro-player-control-icon-size) !important;
 }
 
 .music-pro-now-card-option-b .music-pro-play-button,
 .music-pro-mini-transport .music-pro-mini-play {
-  --icon-size: var(--music-pro-player-play-icon-size);
+  --icon-size: var(--music-pro-player-play-icon-size) !important;
 }
 
 .music-pro-now-card-option-b .music-pro-now-volume-icon,
 .music-pro-mini-sliders .music-pro-mini-volume-icon {
-  --icon-size: var(--music-pro-player-volume-icon-size);
+  --icon-size: var(--music-pro-player-volume-icon-size) !important;
 }
 
 .music-pro-now-card-option-b .music-pro-control-button .svg-icon,
@@ -9290,33 +9298,33 @@
 .music-pro-mini-actions .music-pro-icon-button .svg-icon,
 .music-pro-mini-transport .music-pro-icon-button svg,
 .music-pro-mini-actions .music-pro-icon-button svg {
-  width: var(--music-pro-player-control-icon-size);
-  min-width: var(--music-pro-player-control-icon-size);
-  height: var(--music-pro-player-control-icon-size);
-  min-height: var(--music-pro-player-control-icon-size);
-  stroke-width: var(--music-pro-player-icon-stroke);
+  width: var(--music-pro-player-control-icon-size) !important;
+  min-width: var(--music-pro-player-control-icon-size) !important;
+  height: var(--music-pro-player-control-icon-size) !important;
+  min-height: var(--music-pro-player-control-icon-size) !important;
+  stroke-width: var(--music-pro-player-icon-stroke) !important;
 }
 
 .music-pro-now-card-option-b .music-pro-play-button .svg-icon,
 .music-pro-now-card-option-b .music-pro-play-button svg,
 .music-pro-mini-transport .music-pro-mini-play .svg-icon,
 .music-pro-mini-transport .music-pro-mini-play svg {
-  width: var(--music-pro-player-play-icon-size);
-  min-width: var(--music-pro-player-play-icon-size);
-  height: var(--music-pro-player-play-icon-size);
-  min-height: var(--music-pro-player-play-icon-size);
-  stroke-width: var(--music-pro-player-icon-stroke);
+  width: var(--music-pro-player-play-icon-size) !important;
+  min-width: var(--music-pro-player-play-icon-size) !important;
+  height: var(--music-pro-player-play-icon-size) !important;
+  min-height: var(--music-pro-player-play-icon-size) !important;
+  stroke-width: var(--music-pro-player-icon-stroke) !important;
 }
 
 .music-pro-now-card-option-b .music-pro-now-volume-icon .svg-icon,
 .music-pro-now-card-option-b .music-pro-now-volume-icon svg,
 .music-pro-mini-sliders .music-pro-mini-volume-icon .svg-icon,
 .music-pro-mini-sliders .music-pro-mini-volume-icon svg {
-  width: var(--music-pro-player-volume-icon-size);
-  min-width: var(--music-pro-player-volume-icon-size);
-  height: var(--music-pro-player-volume-icon-size);
-  min-height: var(--music-pro-player-volume-icon-size);
-  stroke-width: var(--music-pro-player-icon-stroke);
+  width: var(--music-pro-player-volume-icon-size) !important;
+  min-width: var(--music-pro-player-volume-icon-size) !important;
+  height: var(--music-pro-player-volume-icon-size) !important;
+  min-height: var(--music-pro-player-volume-icon-size) !important;
+  stroke-width: var(--music-pro-player-icon-stroke) !important;
 }
 
 .music-pro-now-card-option-b .music-pro-control-button svg *,
@@ -9326,7 +9334,7 @@
 .music-pro-mini-actions .music-pro-icon-button svg *,
 .music-pro-mini-transport .music-pro-mini-play svg *,
 .music-pro-mini-sliders .music-pro-mini-volume-icon svg * {
-  stroke-width: var(--music-pro-player-icon-stroke);
+  stroke-width: var(--music-pro-player-icon-stroke) !important;
 }
 
 /* UI audit v63 — Recent category chips get their own grid lane.
@@ -9371,7 +9379,7 @@
   flex-wrap: wrap;
   overflow: visible;
   row-gap: 5px;
-  gap: 0 5px;
+  column-gap: 5px;
   padding: 1px 4px 1px 0;
 }
 
@@ -9424,33 +9432,33 @@
   --music-pro-playlist-category-active-bg: var(--music-pro-side-active);
   --music-pro-playlist-category-border: var(--music-pro-hairline);
   --music-pro-playlist-category-active-border: color-mix(in srgb, var(--interactive-accent) 28%, var(--background-modifier-border));
-  background: var(--music-pro-playlist-category-idle-bg);
-  border-color: var(--music-pro-playlist-category-border);
+  background: var(--music-pro-playlist-category-idle-bg) !important;
+  border-color: var(--music-pro-playlist-category-border) !important;
   box-shadow: none;
 }
 
 .music-pro-playlist-category[data-music-pro-category-id="editors-choice"],
 .music-pro-playlist-category[data-music-pro-category-id="recent"] {
-  background: var(--music-pro-playlist-category-idle-bg);
-  border-color: var(--music-pro-playlist-category-border);
+  background: var(--music-pro-playlist-category-idle-bg) !important;
+  border-color: var(--music-pro-playlist-category-border) !important;
   box-shadow: none;
 }
 
 .music-pro-playlist-category:hover,
 .music-pro-playlist-category[data-music-pro-category-id="editors-choice"]:hover,
 .music-pro-playlist-category[data-music-pro-category-id="recent"]:hover {
-  background: var(--music-pro-playlist-category-hover-bg);
-  border-color: var(--music-pro-playlist-category-border);
+  background: var(--music-pro-playlist-category-hover-bg) !important;
+  border-color: var(--music-pro-playlist-category-border) !important;
   box-shadow: none;
 }
 
 .music-pro-playlist-category.is-active,
 .music-pro-playlist-category[data-music-pro-category-id="editors-choice"].is-active,
 .music-pro-playlist-category[data-music-pro-category-id="recent"].is-active {
-  color: var(--text-normal);
-  background: var(--music-pro-playlist-category-active-bg);
-  border-color: var(--music-pro-playlist-category-active-border);
-  box-shadow: inset 3px 0 0 var(--music-pro-accent-strong);
+  color: var(--text-normal) !important;
+  background: var(--music-pro-playlist-category-active-bg) !important;
+  border-color: var(--music-pro-playlist-category-active-border) !important;
+  box-shadow: inset 3px 0 0 var(--music-pro-accent-strong) !important;
 }
 
 .music-pro-playlist-category.is-active .music-pro-playlist-category-icon,
@@ -9462,14 +9470,14 @@
 
 .music-pro-category-toggle-grid > .setting-item.music-pro-category-toggle-row {
   --music-pro-settings-playlist-row-bg: color-mix(in srgb, var(--background-secondary) 34%, transparent);
-  background: var(--music-pro-settings-playlist-row-bg);
-  border-color: color-mix(in srgb, var(--background-modifier-border) 42%, transparent);
+  background: var(--music-pro-settings-playlist-row-bg) !important;
+  border-color: color-mix(in srgb, var(--background-modifier-border) 42%, transparent) !important;
 }
 
 .music-pro-category-toggle-grid > .setting-item.music-pro-category-toggle-row[data-music-pro-category-id="editors-choice"],
 .music-pro-category-toggle-grid > .setting-item.music-pro-category-toggle-row[data-music-pro-category-id="recent"] {
-  background: var(--music-pro-settings-playlist-row-bg);
-  border-color: color-mix(in srgb, var(--background-modifier-border) 42%, transparent);
+  background: var(--music-pro-settings-playlist-row-bg) !important;
+  border-color: color-mix(in srgb, var(--background-modifier-border) 42%, transparent) !important;
 }
 
 .music-pro-category-toggle-grid > .setting-item.music-pro-category-toggle-row .music-pro-toggle-button.is-active {
@@ -9516,14 +9524,14 @@
   background:
     radial-gradient(ellipse 78% 48% at 50% -18%, var(--music-pro-background-glow) 0%, var(--music-pro-background-soft) 34%, transparent 72%),
     radial-gradient(circle at 88% 2%, color-mix(in srgb, var(--music-pro-background-accent) 14%, transparent) 0%, transparent 24%),
-    linear-gradient(180deg, var(--music-pro-background-deep) 0%, var(--music-pro-background-mid) 42%, var(--music-pro-background-bottom) 100%);
+    linear-gradient(180deg, var(--music-pro-background-deep) 0%, var(--music-pro-background-mid) 42%, var(--music-pro-background-bottom) 100%) !important;
 }
 
 .music-pro-settings.music-pro-fixed-appearance {
   background:
     radial-gradient(ellipse 78% 48% at 50% -18%, var(--music-pro-background-glow) 0%, var(--music-pro-background-soft) 34%, transparent 72%),
     radial-gradient(circle at 88% 2%, color-mix(in srgb, var(--music-pro-background-accent) 12%, transparent) 0%, transparent 24%),
-    linear-gradient(180deg, color-mix(in srgb, var(--music-pro-background-deep) 42%, transparent) 0%, transparent 78%);
+    linear-gradient(180deg, color-mix(in srgb, var(--music-pro-background-deep) 42%, transparent) 0%, transparent 78%) !important;
 }
 
 .music-pro-sidebar.music-pro-fixed-appearance .music-pro-eyebrow,
@@ -9533,11 +9541,11 @@
 .music-pro-settings.music-pro-fixed-appearance .music-pro-settings-hero h2,
 .music-pro-settings.music-pro-fixed-appearance .music-pro-settings-section-title,
 .music-pro-settings.music-pro-fixed-appearance .music-pro-settings-subhead {
-  color: var(--text-normal);
+  color: var(--text-normal) !important;
 }
 
 .music-pro-sidebar.music-pro-fixed-appearance .music-pro-eyebrow {
-  color: rgba(244, 247, 251, 0.66);
+  color: rgba(244, 247, 251, 0.66) !important;
 }
 
 .music-pro-sidebar.music-pro-fixed-appearance .music-pro-now-card,
@@ -9549,10 +9557,10 @@
 .music-pro-settings.music-pro-fixed-appearance .music-pro-personal-playlist-settings,
 .music-pro-mini-dock.music-pro-fixed-appearance .music-pro-mini-panel,
 .music-pro-quick-picker.music-pro-fixed-appearance {
-  border-color: var(--music-pro-hairline);
+  border-color: var(--music-pro-hairline) !important;
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.045), transparent 44%),
-    var(--music-pro-material);
+    var(--music-pro-material) !important;
   color: var(--text-normal);
 }
 
@@ -9571,7 +9579,7 @@
   touch-action: none;
   user-select: none;
   -webkit-user-drag: element;
-  cursor: grab;
+  cursor: grab !important;
   opacity: 0.66;
 }
 
@@ -9585,7 +9593,7 @@
 .music-pro-folder-item-drag-handle:active,
 .music-pro-folder-item-drag-handle.is-dragging,
 .music-pro-item.is-folder-dragging .music-pro-folder-item-drag-handle {
-  cursor: grabbing;
+  cursor: grabbing !important;
 }
 
 .music-pro-item.is-folder-dragging {
@@ -9648,7 +9656,7 @@
   touch-action: none;
   user-select: none;
   -webkit-user-drag: element;
-  cursor: grab;
+  cursor: grab !important;
   opacity: 0.58;
 }
 
@@ -9662,7 +9670,7 @@
 .music-pro-playlist-track.is-track-reorderable .music-pro-drag-handle:active,
 .music-pro-playlist-track.is-track-reorderable .music-pro-drag-handle.is-dragging,
 .music-pro-playlist-track.is-track-dragging .music-pro-drag-handle {
-  cursor: grabbing;
+  cursor: grabbing !important;
 }
 
 .music-pro-playlist-track.is-track-dragging {
@@ -9700,11 +9708,11 @@
    inner frame from compact mode's current-playlist picker and gives two-line
    track labels enough vertical breathing room inside each pill row. */
 .music-pro-mini-dock .music-pro-mini-track-picker {
-  border-width: 0;
-  border-color: transparent;
-  background: transparent;
-  box-shadow: none;
-  padding: 0;
+  border-width: 0 !important;
+  border-color: transparent !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
   margin-top: 0;
   border-radius: 0;
 }
@@ -9744,16 +9752,17 @@
 /* UI audit v71 — single-track links get a centered, hierarchical Tracks-panel notice.
    Non-playlist SoundCloud links should not leave the explanation tucked into
    the top-left corner; center a clear title and supporting line in the panel. */
-.music-pro-playlist-tracks.is-single-track {
+.music-pro-playlist-tracks.is-single-track,
+.music-pro-playlist-tracks:has(.music-pro-single-track-callout) {
   justify-content: flex-start;
 }
 
 .music-pro-playlist-tracks .music-pro-single-track-callout {
-  flex: 1 1 auto;
+  flex: 1 1 auto !important;
   min-height: 0;
   width: 100%;
-  margin: 0;
-  padding: clamp(28px, 9vh, 68px) 22px 34px;
+  margin: 0 !important;
+  padding: clamp(28px, 9vh, 68px) 22px 34px !important;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9810,7 +9819,7 @@
 
 @container (max-width: 390px) {
   .music-pro-playlist-tracks .music-pro-single-track-callout {
-    padding-inline: 16px;
+    padding-inline: 16px !important;
     gap: 12px;
   }
 
@@ -9834,7 +9843,7 @@
    state needs a little bottom bias: icon + title + body should read as one
    centered stack inside the full panel. */
 .music-pro-playlist-tracks .music-pro-single-track-callout {
-  padding: 0 22px clamp(38px, 6vh, 58px);
+  padding: 0 22px clamp(38px, 6vh, 58px) !important;
   justify-content: center;
   gap: 14px;
 }
@@ -9845,7 +9854,7 @@
 
 @container (max-width: 390px) {
   .music-pro-playlist-tracks .music-pro-single-track-callout {
-    padding: 0 16px 36px;
+    padding: 0 16px 36px !important;
   }
 }
 
@@ -9860,25 +9869,25 @@
 .music-pro-now-card-option-b .music-pro-play-button:active,
 .music-pro-now-card-option-b .music-pro-play-button:focus,
 .music-pro-now-card-option-b .music-pro-play-button:focus-visible {
-  color: #ffffff;
-  transition: transform 140ms ease, background 140ms ease, box-shadow 140ms ease;
+  color: #ffffff !important;
+  transition: transform 140ms ease, background 140ms ease, box-shadow 140ms ease !important;
   -webkit-tap-highlight-color: transparent;
 }
 
 .music-pro-now-card-option-b .music-pro-play-button .svg-icon,
 .music-pro-now-card-option-b .music-pro-play-button svg,
 .music-pro-now-card-option-b .music-pro-play-button svg * {
-  color: #ffffff;
-  stroke: currentColor;
-  transition: none;
+  color: #ffffff !important;
+  stroke: currentColor !important;
+  transition: none !important;
 }
 
 .music-pro-now-card-option-b .music-pro-play-button svg [fill="none"] {
-  fill: none;
+  fill: none !important;
 }
 
 .music-pro-now-card-option-b .music-pro-play-button svg [fill]:not([fill="none"]) {
-  fill: currentColor;
+  fill: currentColor !important;
 }
 
 /* UI audit v74 — end-to-end performance pass. Visual output unchanged. */
@@ -9924,7 +9933,7 @@
   flex-wrap: wrap;
   overflow: visible;
   row-gap: 5px;
-  gap: 0 5px;
+  column-gap: 5px;
   padding: 1px 4px 1px 0;
 }
 
@@ -9984,16 +9993,16 @@
 .music-pro-sidebar.music-pro-fixed-appearance button.music-pro-play-button,
 .music-pro-mini-dock.music-pro-fixed-appearance button.music-pro-icon-button,
 .music-pro-mini-dock.music-pro-fixed-appearance button.music-pro-mini-play {
-  -webkit-appearance: none;
-  appearance: none;
-  color: color-mix(in srgb, var(--text-normal) 86%, var(--interactive-accent) 14%);
-  border-color: color-mix(in srgb, var(--background-modifier-border) 48%, transparent);
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  color: color-mix(in srgb, var(--text-normal) 86%, var(--interactive-accent) 14%) !important;
+  border-color: color-mix(in srgb, var(--background-modifier-border) 48%, transparent) !important;
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.075), transparent 54%),
-    color-mix(in srgb, var(--background-secondary) 58%, transparent);
+    color-mix(in srgb, var(--background-secondary) 58%, transparent) !important;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.055),
-    0 6px 16px rgba(0, 0, 0, 0.10);
+    0 6px 16px rgba(0, 0, 0, 0.10) !important;
 }
 
 .music-pro-sidebar.music-pro-fixed-appearance button.music-pro-icon-button:hover,
@@ -10003,35 +10012,35 @@
 .music-pro-sidebar.music-pro-fixed-appearance button.music-pro-play-button:hover,
 .music-pro-mini-dock.music-pro-fixed-appearance button.music-pro-icon-button:hover,
 .music-pro-mini-dock.music-pro-fixed-appearance button.music-pro-mini-play:hover {
-  color: var(--text-normal);
-  border-color: color-mix(in srgb, var(--interactive-accent) 30%, var(--background-modifier-border));
+  color: var(--text-normal) !important;
+  border-color: color-mix(in srgb, var(--interactive-accent) 30%, var(--background-modifier-border)) !important;
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.09), transparent 54%),
-    color-mix(in srgb, var(--interactive-accent) 11%, var(--background-secondary) 89%);
+    color-mix(in srgb, var(--interactive-accent) 11%, var(--background-secondary) 89%) !important;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.06),
-    0 8px 18px color-mix(in srgb, var(--interactive-accent) 12%, transparent);
+    0 8px 18px color-mix(in srgb, var(--interactive-accent) 12%, transparent) !important;
 }
 
 .music-pro-sidebar.music-pro-fixed-appearance button.music-pro-play-button,
 .music-pro-sidebar.music-pro-fixed-appearance button.music-pro-small-play,
 .music-pro-mini-dock.music-pro-fixed-appearance button.music-pro-mini-play {
-  color: #ffffff;
-  border-color: color-mix(in srgb, var(--background-modifier-border) 42%, transparent);
+  color: #ffffff !important;
+  border-color: color-mix(in srgb, var(--background-modifier-border) 42%, transparent) !important;
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.11), transparent 52%),
-    color-mix(in srgb, #ffffff 9%, var(--background-secondary) 91%);
+    color-mix(in srgb, #ffffff 9%, var(--background-secondary) 91%) !important;
 }
 
 .music-pro-sidebar.music-pro-fixed-appearance button.music-pro-loop-toggle.is-active,
 .music-pro-sidebar.music-pro-fixed-appearance button.music-pro-random-toggle.is-active,
 .music-pro-sidebar.music-pro-fixed-appearance button.music-pro-rail-icon-button.is-active {
-  color: #ffffff;
-  border-color: transparent;
+  color: #ffffff !important;
+  border-color: transparent !important;
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.16), transparent 48%),
-    var(--music-pro-accent-strong);
-  box-shadow: 0 8px 20px color-mix(in srgb, var(--interactive-accent) 20%, transparent);
+    var(--music-pro-accent-strong) !important;
+  box-shadow: 0 8px 20px color-mix(in srgb, var(--interactive-accent) 20%, transparent) !important;
 }
 
 .music-pro-sidebar.music-pro-fixed-appearance button.music-pro-icon-button svg,
@@ -10041,8 +10050,8 @@
 .music-pro-sidebar.music-pro-fixed-appearance button.music-pro-play-button svg,
 .music-pro-mini-dock.music-pro-fixed-appearance button.music-pro-icon-button svg,
 .music-pro-mini-dock.music-pro-fixed-appearance button.music-pro-mini-play svg {
-  color: currentColor;
-  stroke: currentColor;
+  color: currentColor !important;
+  stroke: currentColor !important;
 }
 
 /* UI audit v80 — compact auto-hide closes promptly after the pointer leaves.
@@ -10053,7 +10062,7 @@
   transition:
     transform 160ms cubic-bezier(0.4, 0, 1, 1),
     opacity 120ms ease,
-    filter 120ms ease;
+    filter 120ms ease !important;
 }
 
 .music-pro-mini-dock.is-visible.is-autohide.is-proximity-open,
@@ -10062,7 +10071,7 @@
   transition:
     transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
     opacity 140ms ease,
-    filter 140ms ease;
+    filter 140ms ease !important;
 }
 
 /* UI audit v81 — installed-theme hardening for fixed Music Pro surfaces.
@@ -10071,8 +10080,8 @@
    fixed Apple-like shell self-contained without reintroducing adaptive theme
    mode. */
 .music-pro-view-container .view-content:not(.music-pro-sidebar) {
-  padding: 0;
-  background: transparent;
+  padding: 0 !important;
+  background: transparent !important;
   overflow: hidden auto;
 }
 
@@ -10083,7 +10092,7 @@
 .music-pro-full-name-tooltip.music-pro-fixed-appearance {
   isolation: isolate;
   font-family: var(--font-interface);
-  text-shadow: none;
+  text-shadow: none !important;
 }
 
 .music-pro-sidebar.music-pro-fixed-appearance *,
@@ -10097,18 +10106,18 @@
 .music-pro-settings.music-pro-fixed-appearance .setting-item,
 .music-pro-settings.music-pro-fixed-appearance .setting-item-info,
 .music-pro-settings.music-pro-fixed-appearance .setting-item-control {
-  color: var(--text-normal);
-  text-shadow: none;
-  box-shadow: none;
+  color: var(--text-normal) !important;
+  text-shadow: none !important;
+  box-shadow: none !important;
 }
 
 .music-pro-settings.music-pro-fixed-appearance .setting-item {
-  border-color: color-mix(in srgb, var(--music-pro-hairline) 74%, transparent);
+  border-color: color-mix(in srgb, var(--music-pro-hairline) 74%, transparent) !important;
 }
 
 .music-pro-settings.music-pro-fixed-appearance .setting-item-name,
 .music-pro-settings.music-pro-fixed-appearance label {
-  color: var(--text-normal);
+  color: var(--text-normal) !important;
   font-family: var(--font-interface);
 }
 
@@ -10116,91 +10125,91 @@
 .music-pro-settings.music-pro-fixed-appearance .music-pro-settings-hint,
 .music-pro-settings.music-pro-fixed-appearance .music-pro-settings-section-desc,
 .music-pro-quick-picker.music-pro-fixed-appearance p {
-  color: var(--text-muted);
+  color: var(--text-muted) !important;
 }
 
 .music-pro-settings.music-pro-fixed-appearance button,
 .music-pro-quick-picker.music-pro-fixed-appearance button {
-  -webkit-appearance: none;
-  appearance: none;
+  -webkit-appearance: none !important;
+  appearance: none !important;
   font-family: var(--font-interface);
-  text-shadow: none;
+  text-shadow: none !important;
 }
 
 .music-pro-settings.music-pro-fixed-appearance .setting-item-control button:not(.music-pro-toggle-button):not(.music-pro-accent-swatch),
 .music-pro-quick-picker.music-pro-fixed-appearance button.music-pro-quick-item,
 .music-pro-quick-picker.music-pro-fixed-appearance button.music-pro-chip {
-  border: 1px solid color-mix(in srgb, var(--background-modifier-border) 54%, transparent);
+  border: 1px solid color-mix(in srgb, var(--background-modifier-border) 54%, transparent) !important;
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.07), transparent 54%),
-    color-mix(in srgb, var(--background-secondary) 64%, transparent);
-  color: var(--text-normal);
-  box-shadow: none;
+    color-mix(in srgb, var(--background-secondary) 64%, transparent) !important;
+  color: var(--text-normal) !important;
+  box-shadow: none !important;
 }
 
 .music-pro-settings.music-pro-fixed-appearance .setting-item-control button:not(.music-pro-toggle-button):not(.music-pro-accent-swatch) {
   min-height: 30px;
-  padding: 4px 12px;
-  border-radius: 999px;
-  line-height: 1;
+  padding: 4px 12px !important;
+  border-radius: 999px !important;
+  line-height: 1 !important;
 }
 
 .music-pro-quick-picker.music-pro-fixed-appearance button.music-pro-quick-item {
-  width: 100%;
-  padding: 10px;
-  border-radius: 14px;
-  text-align: left;
+  width: 100% !important;
+  padding: 10px !important;
+  border-radius: 14px !important;
+  text-align: left !important;
 }
 
 .music-pro-quick-picker.music-pro-fixed-appearance button.music-pro-chip {
-  padding: 6px 11px;
-  border-radius: 999px;
-  line-height: 1.1;
+  padding: 6px 11px !important;
+  border-radius: 999px !important;
+  line-height: 1.1 !important;
 }
 
 .music-pro-settings.music-pro-fixed-appearance .setting-item-control button:not(.music-pro-toggle-button):not(.music-pro-accent-swatch):hover,
 .music-pro-quick-picker.music-pro-fixed-appearance button.music-pro-quick-item:hover,
 .music-pro-quick-picker.music-pro-fixed-appearance button.music-pro-chip:hover {
-  border-color: color-mix(in srgb, var(--interactive-accent) 28%, var(--background-modifier-border));
+  border-color: color-mix(in srgb, var(--interactive-accent) 28%, var(--background-modifier-border)) !important;
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.09), transparent 54%),
-    color-mix(in srgb, var(--interactive-accent) 10%, var(--background-secondary) 90%);
-  color: var(--text-normal);
+    color-mix(in srgb, var(--interactive-accent) 10%, var(--background-secondary) 90%) !important;
+  color: var(--text-normal) !important;
 }
 
 .music-pro-settings.music-pro-fixed-appearance button.music-pro-toggle-button {
-  border-color: color-mix(in srgb, var(--background-modifier-border) 72%, transparent);
-  background: color-mix(in srgb, var(--background-secondary) 72%, transparent);
-  color: var(--text-muted);
-  border-radius: 999px;
+  border-color: color-mix(in srgb, var(--background-modifier-border) 72%, transparent) !important;
+  background: color-mix(in srgb, var(--background-secondary) 72%, transparent) !important;
+  color: var(--text-muted) !important;
+  border-radius: 999px !important;
   min-height: 30px;
-  box-shadow: none;
+  box-shadow: none !important;
 }
 
 .music-pro-settings.music-pro-fixed-appearance button.music-pro-toggle-button.is-active {
-  border-color: color-mix(in srgb, var(--music-pro-accent, var(--interactive-accent)) 58%, transparent);
-  background: color-mix(in srgb, var(--music-pro-accent, var(--interactive-accent)) 18%, var(--background-secondary));
-  color: var(--music-pro-accent, var(--interactive-accent));
+  border-color: color-mix(in srgb, var(--music-pro-accent, var(--interactive-accent)) 58%, transparent) !important;
+  background: color-mix(in srgb, var(--music-pro-accent, var(--interactive-accent)) 18%, var(--background-secondary)) !important;
+  color: var(--music-pro-accent, var(--interactive-accent)) !important;
 }
 
 .music-pro-quick-picker.music-pro-fixed-appearance button.music-pro-chip.is-active {
-  border-color: transparent;
-  background: var(--music-pro-accent-strong, var(--music-pro-accent, var(--interactive-accent)));
-  color: var(--music-pro-on-accent, var(--text-on-accent, #ffffff));
+  border-color: transparent !important;
+  background: var(--music-pro-accent-strong, var(--music-pro-accent, var(--interactive-accent))) !important;
+  color: var(--music-pro-on-accent, var(--text-on-accent, #ffffff)) !important;
 }
 
 .music-pro-settings.music-pro-fixed-appearance button.music-pro-accent-swatch {
-  -webkit-appearance: none;
-  appearance: none;
-  border-color: color-mix(in srgb, var(--music-pro-swatch) 42%, var(--background-modifier-border));
-  background: color-mix(in srgb, var(--music-pro-swatch) 10%, var(--background-secondary));
-  color: var(--text-normal);
-  border-radius: 999px;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  border-color: color-mix(in srgb, var(--music-pro-swatch) 42%, var(--background-modifier-border)) !important;
+  background: color-mix(in srgb, var(--music-pro-swatch) 10%, var(--background-secondary)) !important;
+  color: var(--text-normal) !important;
+  border-radius: 999px !important;
 }
 
 .music-pro-settings.music-pro-fixed-appearance button.music-pro-accent-swatch.is-active {
-  border-color: color-mix(in srgb, var(--music-pro-swatch) 80%, white 20%);
-  background: color-mix(in srgb, var(--music-pro-swatch) 20%, var(--background-secondary));
+  border-color: color-mix(in srgb, var(--music-pro-swatch) 80%, white 20%) !important;
+  background: color-mix(in srgb, var(--music-pro-swatch) 20%, var(--background-secondary)) !important;
 }
 
 .music-pro-sidebar.music-pro-fixed-appearance .music-pro-search-wrap,
@@ -10208,18 +10217,18 @@
 .music-pro-settings.music-pro-fixed-appearance .setting-item-control input:not([type="range"]):not([type="color"]),
 .music-pro-settings.music-pro-fixed-appearance .setting-item-control textarea,
 .music-pro-settings.music-pro-fixed-appearance .setting-item-control select {
-  border-color: color-mix(in srgb, var(--background-modifier-border) 54%, transparent);
-  background: color-mix(in srgb, var(--background-secondary) 62%, transparent);
-  color: var(--text-normal);
-  box-shadow: none;
+  border-color: color-mix(in srgb, var(--background-modifier-border) 54%, transparent) !important;
+  background: color-mix(in srgb, var(--background-secondary) 62%, transparent) !important;
+  color: var(--text-normal) !important;
+  box-shadow: none !important;
 }
 
 .music-pro-settings.music-pro-fixed-appearance .setting-item-control input:not([type="range"]):not([type="color"]),
 .music-pro-settings.music-pro-fixed-appearance .setting-item-control textarea,
 .music-pro-settings.music-pro-fixed-appearance .setting-item-control select {
   min-height: 30px;
-  padding: 4px 10px;
-  border-radius: 10px;
+  padding: 4px 10px !important;
+  border-radius: 10px !important;
 }
 
 .music-pro-sidebar.music-pro-fixed-appearance .music-pro-search-input,
@@ -10228,24 +10237,24 @@
 .music-pro-settings.music-pro-fixed-appearance .setting-item-control textarea,
 .music-pro-settings.music-pro-fixed-appearance .setting-item-control select {
   font-family: var(--font-interface);
-  color: var(--text-normal);
+  color: var(--text-normal) !important;
   caret-color: var(--music-pro-accent, var(--interactive-accent));
-  text-shadow: none;
+  text-shadow: none !important;
 }
 
 .music-pro-sidebar.music-pro-fixed-appearance .music-pro-search-input::placeholder,
 .music-pro-quick-picker.music-pro-fixed-appearance .music-pro-search-input::placeholder,
 .music-pro-settings.music-pro-fixed-appearance .setting-item-control input::placeholder,
 .music-pro-settings.music-pro-fixed-appearance .setting-item-control textarea::placeholder {
-  color: var(--text-faint);
-  opacity: 1;
+  color: var(--text-faint) !important;
+  opacity: 1 !important;
 }
 
 .music-pro-settings.music-pro-fixed-appearance .setting-item-control input[type="color"] {
-  background: color-mix(in srgb, var(--background-secondary) 62%, transparent);
-  border-color: color-mix(in srgb, var(--background-modifier-border) 54%, transparent);
-  border-radius: 10px;
-  box-shadow: none;
+  background: color-mix(in srgb, var(--background-secondary) 62%, transparent) !important;
+  border-color: color-mix(in srgb, var(--background-modifier-border) 54%, transparent) !important;
+  border-radius: 10px !important;
+  box-shadow: none !important;
 }
 
 .music-pro-sidebar.music-pro-fixed-appearance input,
@@ -10265,7 +10274,7 @@
   background:
     radial-gradient(ellipse 78% 48% at 50% -18%, var(--music-pro-background-glow) 0%, var(--music-pro-background-soft) 34%, transparent 72%),
     radial-gradient(circle at 88% 2%, color-mix(in srgb, var(--music-pro-background-accent) 14%, transparent) 0%, transparent 24%),
-    linear-gradient(180deg, var(--music-pro-background-deep) 0%, var(--music-pro-background-mid) 42%, var(--music-pro-background-bottom) 100%);
+    linear-gradient(180deg, var(--music-pro-background-deep) 0%, var(--music-pro-background-mid) 42%, var(--music-pro-background-bottom) 100%) !important;
   background-attachment: local;
 }
 
@@ -10283,12 +10292,12 @@
   align-items: center;
   gap: 18px;
   margin: 10px 0;
-  padding: 14px 18px;
-  border-bottom: 0;
-  border-radius: 16px;
+  padding: 14px 18px !important;
+  border-bottom: 0 !important;
+  border-radius: 16px !important;
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 58%),
-    color-mix(in srgb, #141820 54%, var(--background-primary) 46%);
+    color-mix(in srgb, #141820 54%, var(--background-primary) 46%) !important;
 }
 
 .music-pro-settings.music-pro-fixed-appearance .music-pro-settings-section > .setting-item:first-of-type,
@@ -10307,14 +10316,14 @@
 
 .music-pro-settings.music-pro-fixed-appearance .setting-item-info {
   min-width: 0;
-  padding: 0;
+  padding: 0 !important;
 }
 
 .music-pro-settings.music-pro-fixed-appearance .setting-item-control {
   flex: 0 0 auto;
   min-width: max-content;
   margin-left: auto;
-  padding-left: 16px;
+  padding-left: 16px !important;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -10324,12 +10333,12 @@
 .music-pro-settings.music-pro-fixed-appearance .music-pro-category-toggle-grid > .setting-item.music-pro-category-toggle-row {
   min-height: 66px;
   margin: 0;
-  padding: 12px 14px;
-  border-radius: 15px;
+  padding: 12px 14px !important;
+  border-radius: 15px !important;
 }
 
 .music-pro-settings.music-pro-fixed-appearance .music-pro-category-toggle-grid > .setting-item.music-pro-category-toggle-row .setting-item-control {
-  padding-left: 10px;
+  padding-left: 10px !important;
 }
 
 @container (max-width: 560px) {
@@ -10339,11 +10348,11 @@
   .music-pro-settings.music-pro-fixed-appearance .music-pro-personal-playlist-list > .setting-item {
     min-height: 68px;
     gap: 12px;
-    padding: 12px 14px;
+    padding: 12px 14px !important;
   }
 
   .music-pro-settings.music-pro-fixed-appearance .setting-item-control {
-    padding-left: 8px;
+    padding-left: 8px !important;
   }
 }
 
@@ -10352,23 +10361,24 @@
   display: grid;
   justify-items: start;
   gap: 8px;
-  margin: 0 0 18px;
-  padding: 0;
-  text-align: left;
+  margin: 0 0 18px !important;
+  padding: 0 !important;
+  text-align: left !important;
 }
 
 .music-pro-settings.music-pro-fixed-appearance .music-pro-settings-hero h2,
 .music-pro-settings.music-pro-fixed-appearance .music-pro-settings-hero p {
   display: block;
-  margin-inline: 0;
-  padding-inline: 0;
-  text-align: left;
+  margin-inline: 0 !important;
+  padding-inline: 0 !important;
+  text-indent: 0 !important;
+  text-align: left !important;
 }
 
 .music-pro-settings.music-pro-fixed-appearance .music-pro-settings-hero p {
-  margin-block: 0;
+  margin-block: 0 !important;
   max-width: 720px;
-  color: var(--text-muted);
+  color: var(--text-muted) !important;
   font-size: 16px;
   line-height: 1.35;
 }
