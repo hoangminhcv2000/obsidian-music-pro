@@ -1,0 +1,44 @@
+{
+  "name": "music-pro",
+  "version": "1.0.0",
+  "description": "A plug-and-play music app for deep work inside Obsidian.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/build-bundled-catalog.mjs && node esbuild.config.mjs production",
+    "dev": "node scripts/build-bundled-catalog.mjs && node esbuild.config.mjs",
+    "check": "node scripts/build-bundled-catalog.mjs && npm run audit && tsc --noEmit && npm run build",
+    "release:prepare": "npm run check && node scripts/prepare-release.mjs",
+    "install-plugin": "npm run build && node scripts/install-plugin.mjs",
+    "catalog:add": "node scripts/add-soundcloud.mjs",
+    "catalog:validate": "node scripts/validate-catalog.mjs",
+    "catalog:seed": "node scripts/seed-catalog-from-search.mjs",
+    "catalog:seed:fresh": "node scripts/seed-catalog-from-search.mjs --fresh",
+    "catalog:rebalance:fresh": "node scripts/rebalance-fresh-catalog.mjs",
+    "catalog:refresh-artwork": "node scripts/refresh-artwork.mjs",
+    "catalog:screen-public-embed": "node scripts/screen-catalog-public-embed.mjs",
+    "catalog:prune-public-embed": "node scripts/prune-catalog-public-embed.mjs",
+    "audit": "node scripts/audit.mjs",
+    "catalog:enrich-popularity": "node scripts/enrich-soundcloud-popularity.mjs",
+    "catalog:dedupe": "node scripts/dedupe-playlists.mjs",
+    "catalog:curate-editors-choice": "node scripts/curate-editors-choice.mjs"
+  },
+  "keywords": [
+    "obsidian",
+    "soundcloud",
+    "music",
+    "player",
+    "focus"
+  ],
+  "author": "Minh Hoang",
+  "license": "GPL-3.0-only",
+  "devDependencies": {
+    "@types/node": "25.9.1",
+    "esbuild": "0.28.0",
+    "obsidian": "1.13.0",
+    "typescript": "6.0.3"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

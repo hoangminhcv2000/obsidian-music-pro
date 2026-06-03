@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Music Pro Catalog",
+  "type": "object",
+  "required": ["version", "updatedAt", "items"],
+  "properties": {
+    "version": { "type": "number" },
+    "updatedAt": { "type": "string" },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "provider", "type", "title", "artist", "url", "categories", "source", "addedAt", "verifiedAt", "status"],
+        "properties": {
+          "id": { "type": "string" },
+          "provider": { "const": "soundcloud" },
+          "type": { "enum": ["track", "playlist", "profile", "album", "unknown"] },
+          "title": { "type": "string" },
+          "displayTitle": { "type": "string" },
+          "artist": { "type": "string" },
+          "url": { "type": "string" },
+          "artworkUrl": { "type": "string" },
+          "authorUrl": { "type": "string" },
+          "categories": { "type": "array", "items": { "type": "string" } },
+          "tags": { "type": "array", "items": { "type": "string" } },
+          "source": { "enum": ["curated", "user"] },
+          "addedAt": { "type": "string" },
+          "verifiedAt": { "type": "string" },
+          "status": { "enum": ["active", "broken", "hidden"] },
+          "playbackCount": { "type": "number", "minimum": 0 },
+          "playback_count": { "type": "number", "minimum": 0 },
+          "playCount": { "type": "number", "minimum": 0 },
+          "play_count": { "type": "number", "minimum": 0 },
+          "plays": { "type": "number", "minimum": 0 },
+          "likesCount": { "type": "number", "minimum": 0 },
+          "likes_count": { "type": "number", "minimum": 0 },
+          "likeCount": { "type": "number", "minimum": 0 },
+          "like_count": { "type": "number", "minimum": 0 },
+          "likes": { "type": "number", "minimum": 0 },
+          "repostsCount": { "type": "number", "minimum": 0 },
+          "reposts_count": { "type": "number", "minimum": 0 },
+          "repostCount": { "type": "number", "minimum": 0 },
+          "repost_count": { "type": "number", "minimum": 0 },
+          "reposts": { "type": "number", "minimum": 0 },
+          "commentsCount": { "type": "number", "minimum": 0 },
+          "comments_count": { "type": "number", "minimum": 0 },
+          "commentCount": { "type": "number", "minimum": 0 },
+          "comment_count": { "type": "number", "minimum": 0 },
+          "comments": { "type": "number", "minimum": 0 },
+          "followersCount": { "type": "number", "minimum": 0 },
+          "followers_count": { "type": "number", "minimum": 0 },
+          "followerCount": { "type": "number", "minimum": 0 },
+          "follower_count": { "type": "number", "minimum": 0 },
+          "followers": { "type": "number", "minimum": 0 },
+          "popularity": { "type": "number", "minimum": 0 },
+          "soundcloudTrackCount": { "type": "number", "minimum": 0 },
+          "popularityConfidence": { "enum": ["none", "low", "medium", "high"] },
+          "popularityUpdatedAt": { "type": "string" }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+# Dependencies
+node_modules/
+
+# Build and release output
+dist/
+release/
+src/catalog/bundledCatalog.ts
+
+# Local audit previews and project notes
+audit/
+PROJECT - Music Pro.md
+
+# OS/editor noise
+.DS_Store
+*.log
+*.af~lock~
