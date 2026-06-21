@@ -1,4 +1,4 @@
-import { Notice, Plugin, WorkspaceLeaf } from "obsidian";
+import { Notice, Platform, Plugin, WorkspaceLeaf } from "obsidian";
 import { CatalogService, type AddUserSoundCloudResult } from "./catalog/CatalogService";
 import { buildPlaylistIndex } from "./catalog/PlaylistIndex";
 import {
@@ -113,6 +113,12 @@ export default class MusicProPlugin extends Plugin {
 
   async onload(): Promise<void> {
     await this.loadSettings();
+    this.addSettingTab(new MusicProSettingsTab(this.app, this));
+
+    if (this.isMobileModeBlocked()) {
+      console.info("Music Pro: mobile mode is disabled in settings.");
+      return;
+    }
 
     this.store = new PlayerStore({ mode: this.settings.viewMode, volume: this.settings.volume });
     this.player = new SoundCloudPlayer(this.store);
@@ -133,7 +139,6 @@ export default class MusicProPlugin extends Plugin {
     this.addCommand({ id: "volume-60", name: "Volume 60%", callback: () => this.setUserVolume(60, true) });
     this.addCommand({ id: "volume-90", name: "Volume 90%", callback: () => this.setUserVolume(90, true) });
 
-    this.addSettingTab(new MusicProSettingsTab(this.app, this));
     this.miniDock = new MiniDock(this);
     this.configureExternalAudioMonitor();
     this.configureRainbowAccent();
@@ -236,6 +241,7 @@ export default class MusicProPlugin extends Plugin {
       this.settings.recentlyPlayedArtworkByItemId = {};
     }
     this.settings.autoplayOnStartup = this.settings.autoplayOnStartup !== false;
+    this.settings.enableMobileMode = this.settings.enableMobileMode === true;
     this.settings.firstRunComplete = Boolean(this.settings.firstRunComplete);
     this.settings.lastAddCategory = this.settings.lastAddCategory || "User";
     this.settings.pauseForExternalAudio = this.settings.pauseForExternalAudio !== false;
@@ -263,6 +269,18 @@ export default class MusicProPlugin extends Plugin {
 
   async saveSettings(): Promise<void> {
     await this.saveData(this.settings);
+  }
+
+  isMobileModeBlocked(): boolean {
+    return Platform.isMobile && !this.settings.enableMobileMode;
+  }
+
+  async setMobileModeEnabled(enabled: boolean): Promise<void> {
+    this.settings.enableMobileMode = Boolean(enabled);
+    await this.saveSettings();
+    if (Platform.isMobile) {
+      new Notice("Music Pro: reload Obsidian to apply mobile mode.");
+    }
   }
 
   private saveSettingsSoon(delay = 220): void {

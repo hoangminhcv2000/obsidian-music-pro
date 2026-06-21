@@ -5,6 +5,6 @@
   "minAppVersion": "1.5.0",
   "description": "A plug-and-play music app for deep work.",
   "author": "Minh Hoang",
-  "isDesktopOnly": true,
+  "isDesktopOnly": false,
   "fundingUrl": "https://ko-fi.com/minhhoang2000"
 }

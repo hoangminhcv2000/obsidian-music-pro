@@ -24,6 +24,7 @@ export interface MusicProBehaviorStats {
 export interface MusicProSettings {
   viewMode: PlayerMode;
   autoplayOnStartup: boolean;
+  enableMobileMode: boolean;
   autoHideMini: boolean;
   pauseForExternalAudio: boolean;
   randomPlaylistEnabled: boolean;
@@ -73,6 +74,7 @@ export const DEFAULT_PLAYLIST_CATEGORY_ORDER = [
 export const DEFAULT_SETTINGS: MusicProSettings = {
   viewMode: "mini",
   autoplayOnStartup: true,
+  enableMobileMode: false,
   autoHideMini: true,
   pauseForExternalAudio: true,
   randomPlaylistEnabled: false,

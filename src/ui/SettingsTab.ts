@@ -1,4 +1,4 @@
-import { App, Notice, PluginSettingTab, Setting } from "obsidian";
+import { App, Notice, Platform, PluginSettingTab, Setting } from "obsidian";
 import type MusicProPlugin from "../main";
 
 const ACCENT_COLOR_PRESETS = [
@@ -31,6 +31,29 @@ export class MusicProSettingsTab extends PluginSettingTab {
     const hero = containerEl.createDiv({ cls: "music-pro-settings-hero" });
     hero.createEl("h2", { text: "Music Pro" });
     hero.createEl("p", { text: "A plug-and-play music app for deep work." });
+
+    const device = this.createSettingsSection(
+      containerEl,
+      "Device",
+      "Choose where Music Pro is allowed to run.",
+      "music-pro-device-settings"
+    );
+
+    const mobileModeSetting = new Setting(device)
+      .setName("Mobile mode")
+      .setDesc("Allow Music Pro to run on Obsidian Mobile. Keep this off if mobile has issues. Reload Obsidian after changing it on mobile.");
+    this.addBooleanButton(mobileModeSetting, this.plugin.settings.enableMobileMode, async (value) => {
+      await this.plugin.setMobileModeEnabled(value);
+      if (Platform.isMobile) this.display();
+    });
+
+    if (this.plugin.isMobileModeBlocked()) {
+      containerEl.createDiv({
+        cls: "music-pro-settings-hint",
+        text: "Music Pro is disabled on this mobile device. Turn on Mobile mode above, then reload Obsidian to use it here."
+      });
+      return;
+    }
 
     const appearance = this.createSettingsSection(
       containerEl,
