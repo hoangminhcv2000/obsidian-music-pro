@@ -1,6 +1,6 @@
 {
   "name": "music-pro",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A plug-and-play music app for deep work.",
   "type": "module",
   "private": true,

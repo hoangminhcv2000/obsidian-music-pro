@@ -66,7 +66,7 @@ assert(!/obsidian/i.test(name), "manifest.name should not include Obsidian.");
 assert(description.length > 0 && description.length <= 250, "manifest.description must be present and <= 250 characters.");
 assert(description.endsWith("."), "manifest.description should end with a period.");
 assert(!hasEmojiOrSymbol(description), "manifest.description should not include emoji or pictographic symbols.");
-assert(manifest.isDesktopOnly === true, "manifest.isDesktopOnly must stay true for this desktop-first SoundCloud player release.");
+assert(manifest.isDesktopOnly === false, "manifest.isDesktopOnly must be false so the in-app Mobile mode switch can control mobile behavior.");
 assert(packageJson.author === "Minh Hoang" && manifest.author === "Minh Hoang", "release-facing author metadata should be Minh Hoang.");
 assert(/## Privacy and Network Use/i.test(readme) && readme.includes("SoundCloud"), "README must disclose privacy and network use.");
 assert(!/MVP|--category Focus|--target=50/.test(readme), "README still contains stale MVP/catalog examples.");

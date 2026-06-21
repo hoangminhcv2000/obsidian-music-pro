@@ -1617,13 +1617,14 @@ check("Obsidian command palette stays minimal and user-facing", async () => {
 
 check("short description is consistent across release-facing sources", async () => {
   const expected = "A plug-and-play music app for deep work.";
+  const readmeExpected = "A plug-and-play music app for deep work inside Obsidian.";
   const manifest = JSON.parse(await readFile(new URL("../manifest.json", import.meta.url), "utf8"));
   const packageJson = JSON.parse(await readFile(new URL("../package.json", import.meta.url), "utf8"));
   const readme = await readFile(new URL("../README.md", import.meta.url), "utf8");
 
   assert(manifest.description === expected, "manifest.description should use the approved short description");
   assert(packageJson.description === expected, "package.json description should use the approved short description");
-  assert(readme.includes(`\n${expected}\n`), "README intro should use the approved short description");
+  assert(readme.includes(`\n${readmeExpected}\n`), "README intro should use the approved short description for readers");
   assert((await readFile(new URL("../src/ui/SettingsTab.ts", import.meta.url), "utf8")).includes(expected), "Settings hero should use the approved short description");
 });
 
@@ -1784,7 +1785,7 @@ check("production data persistence and privacy disclosure are sound", async () =
   assert(player.includes("PLAYLIST_METADATA_CACHE_MS") && player.includes("PLAYLIST_METADATA_FAILURE_BACKOFF_MS") && player.includes("playlistTrackMetadataCache") && !settings.includes("playlistTrackMetadataCache"), "SoundCloud playlist hydration metadata should be cached in memory with backoff, not stored in plugin data");
   assert(settings.includes("behaviorStats") && settings.includes("recentlyPlayedItemIds") && settings.includes("currentPositionMs"), "settings schema should explicitly own local listening/history/resume fields");
   assert(!main.includes("localStorage") && !main.includes("indexedDB") && !player.includes("localStorage") && !player.includes("indexedDB"), "Music Pro should store production data through Obsidian plugin data, not browser storage");
-  assert(readme.includes("Music Pro has no telemetry, analytics, ads, or account requirement") && readme.includes("SoundCloud, to play music and load public playlist info") && readme.includes("Saved locally in Obsidian") && readme.includes("ranking, and UI preferences") && readme.includes("Cached catalog data"), "README should disclose privacy/network use in concise user-facing language");
+  assert(readme.includes("Music Pro is not affiliated with SoundCloud or Obsidian. Music Pro has no telemetry, analytics, ads, or account requirement") && readme.includes("SoundCloud, to play music and load public playlist info") && readme.includes("Saved locally in Obsidian") && readme.includes("ranking, cache, and UI preferences"), "README should disclose privacy/network use in concise user-facing language");
 });
 
 check("release metadata uses GPL-3.0-only licensing", async () => {
